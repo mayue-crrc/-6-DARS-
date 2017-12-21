@@ -5,4 +5,8 @@
  master
 =======
 创建 第一个分支new master
+<<<<<<< HEAD
+>>>>>>> new-master
+=======
+在new master上编辑
 >>>>>>> new-master
