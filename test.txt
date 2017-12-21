@@ -1,2 +1,2 @@
-test ÎÄµµ
+test
 // this is test 2
