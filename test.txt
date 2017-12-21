@@ -1,4 +1,8 @@
 ﻿test
 // this is test 2
+<<<<<<< HEAD
 
  master
+=======
+创建 第一个分支new master
+>>>>>>> new-master
