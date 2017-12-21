@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<div id="runningPage">
+		<div id="part1">
+			<div id="trainFault">
+				<ul id="trainfault" >			
+				</ul>
+			</div>
+			<div id="trainRunning">
+				<ul id="trainrunning">
+				</ul>
+			</div>
+			<div id="trainStoping">
+				<ul id="trainstoping">
+				</ul>
+			</div>
+		</div>
+		<div id="part2">
+			<div id="part-1">
+			</div>
+		</div>
+		<div id="part3">
+			<div id="part3-1"></div>
+			<div id="part3-2">
+				<label for="" class="ui-state-default"><span class="ui-icon ui-icon-alert"></span>报警信息&nbsp;&nbsp;</label>
+				<li class="ui-state-default"></li>
+				<li class="ui-state-default"></li>
+			</div>
+		</div>
+		<style>
+				#part1
+				{
+					float: left;
+					width: 30%;
+					height: auto;
+				}
+				#icons {
+					margin: 0;
+					padding: 0;
+				}
+				#icons li {
+					margin: 2px;
+					position: relative;
+					padding: 4px 0;
+					cursor: pointer;
+					float: left;
+					list-style: none;
+				}
+				#icons span.ui-icon {
+					float: left;
+					margin: 0 4px;
+				}
+				.warnning
+				{
+					background-color: red;
+					width: 140px;
+					color: white;
+				}
+				.running
+				{
+					background-color:greenyellow;
+					width: 140px;
+				}
+				.stoping
+				{
+					background-color: #999999;
+					width: 140px;
+					color: white;
+				}
+				li a{
+					width: 100px;
+					background-color:#EFEFF4;
+				}
+				li
+				{
+					list-style: none;
+					border-bottom: white;
+					margin-top: 2px;
+					height: 20px;
+				}
+				#trainFault
+				{
+					background-color: #DDDDDD;
+					width: 220px;
+					height: 200px;
+					background-clip: border-box;
+					overflow: auto;
+					border: 1px solid #696;
+					-webkit-border-radius: 8px;
+                    -moz-border-radius: 8px;
+				}
+				#trainRunning
+				{
+					margin-top: 5px;
+					background-color: #DDDDDD;
+					width: 220px;
+					height: 200px;
+					background-clip: border-box;
+					overflow: auto;
+					border: 1px solid #696;
+					-webkit-border-radius: 8px;
+                    -moz-border-radius: 8px;
+				}
+				#trainStoping
+				{
+					margin-top: 5px;
+					background-color: #DDDDDD;
+					width: 220px;
+					height: 200px;
+					background-clip: border-box;
+					overflow: auto;
+					border: 1px solid #696;
+					-webkit-border-radius: 8px;
+                    -moz-border-radius: 8px;
+				}
+				#part2
+				{
+					float: left;
+					width: 60%;
+				}
+				#part-1
+				{
+					float: left;
+					width: 90%;
+					height: auto;
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-content: flex-start;
+					justify-content: flex-start;
+				}
+				.item
+				{
+					border: 1px solid #696;
+					text-align: center; 
+					width: 130px;
+					height: 170px;
+					-webkit-border-radius: 8px;
+                    -moz-border-radius: 8px;
+					border-radius: 8px;
+					-webkit-box-shadow:#666 0px 0px 10px;
+					-moz-box-shadow: #666 0px 0px 10px;
+					box-shadow: #666 0px 0px 10px;
+					background-color: white;
+					margin-left: 10px;
+					margin-bottom: 10px;
+
+				}
+				.itemhead
+				{
+					width: 100%;
+					height: 20px;
+					display:block;
+					background:-webkit-gradient(linear, left top , right top, from(greenyellow), to(#FFFA90)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				}
+				.itemhead >img
+				{
+					
+					margin-left: 0px;
+					margin-top: 2px;
+				}
+				.faulthead
+				{
+					width: 100%;
+					height: 20px;
+					display:block;
+					color: white;
+					background:-webkit-gradient(linear, left top , right top, from(red), to(#F1A899)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				}
+				#part-2
+				{
+					width: 10%;
+					float: right;
+				}
+				#part3
+				{
+					width: 10%;
+					float: right;
+				}
+				#part3-1
+				{
+					width: 100%;
+					height: 40px;
+					float: left;
+				}
+				#BTN-warnning
+				{
+					position: relative;
+					float: right;
+					width: 30px;
+					height: 30px;
+					top: 0px;
+					right: 0px;
+					
+				}
+				#part3-2
+				{
+					display: none;
+					border: 1px solid #696;
+					width: 60%;
+					float: right;
+					height: 600px;
+					background-color:#DDDDDD;
+				}
+				.train-runningstate-fault
+				{
+					background-color: red;
+					color: white;
+					font-size:12px;
+					text-align: center;
+					line-height: 16px;
+					height: 16px;
+					
+				}
+				.train-runningstate-nomal
+				{
+					background:#DDDDDD;
+					font-size:12px;
+					text-align: center;
+					height: 16px;
+					line-height: 16px;
+				}
+		</style>
+		<script type="text/javascript">
+			$(function(){
+				getTrainState();
+				var flag=true;
+				$("#BTN-warnning").click(function(){
+					$("#part3-2").toggle(200);
+					if(flag)
+					{
+						$("#part3").animate({ 
+							width:"20%"
+						},{
+							duration:200
+						});
+						$("#part2").animate({ 
+							width:"50%"
+						},{
+							duration:200
+						});
+						$("#part3-1").animate({
+							width:"39%",
+							float:"left",
+							left:"0px"
+						},{
+							duration:200 
+						});
+						$("#BTN-warnning>span").removeClass("ui-icon-mail-closed");
+						$("#BTN-warnning>span").addClass("ui-icon-mail-open");
+						flag=false;
+					}
+					else
+					{
+						$("#part3").animate({ 
+							width:"10%"
+						},{
+							duration:200
+						});
+						$("#part2").animate({
+							width:"60%"
+						},{
+							duration:200
+						});
+						$("#part3-1").animate({
+							width:"100%",
+							float:"right",
+							right:"0px"
+						},{
+							duration:200
+						});
+						$("#BTN-warnning>span").removeClass("ui-icon-mail-open");
+						$("#BTN-warnning>span").addClass("ui-icon-mail-closed");
+						flag=true;
+					}
+				});
+			});
+			
+function getTrainState()
+{
+	//清空节点
+	$("#trainfault").empty();
+	$("#trainrunning").empty();
+	$("#trainstoping").empty();
+	$.each(train, function(i,val) {
+			//按照车辆状态添加节点
+			if(val.faultState=="on")
+			{
+				$("#trainfault").append('<li class=" ui-corner-all warnning" title=".ui-icon-caret-1-n"><span class="ui-icon ui-icon-circle-close"></span>'+val.trainnum+'车故障'+'</li>');
+				$("#part-1").append('<div class="item train'+val.trainnum+'"><div class="faulthead faultstate"><img src="css/images/bitbug_favicon.ico"/><span>'+val.trainnum+'</span></div></div>');
+				$(".train"+val.trainnum).append('<div><img src="images/fault.ico"/></div>');
+				faultWarnning($(".train"+val.trainnum),val,"train-runningstate-fault");
+				
+			}
+			else if(val.runningState=="on")
+			{
+				$("#trainrunning").append('<li class=" ui-corner-all running" title=".ui-icon-caret-1-n"><span class="ui-icon ui-icon-circle-arrow-e"></span>'+val.trainnum+'车正常运行'+'</li>');
+				$("#part-1").append('<div class="item train'+val.trainnum+'"><div class="itemhead"><img src="css/images/bitbug_favicon.ico"/><span>'+val.trainnum+'</span></div></div>');
+				$(".train"+val.trainnum).append('<div><img src="images/nomal.ico"/></div>');
+				faultWarnning($(".train"+val.trainnum),val,"train-runningstate-nomal");
+			}
+			else if(val.stopState=="on")
+			{	
+				$("#trainstoping").append('<li class=" ui-corner-all stoping" title=".ui-icon-caret-1-n"><span class="ui-icon ui-icon-cancel"></span>'+val.trainnum+'车停止运行'+'</li>');
+			}
+			else
+			{
+				
+			}
+						
+	});
+	$("#part3-1").append('<button id="BTN-warnning"><span class="ui-icon ui-icon-mail-closed"></span></button>');
+}
+
+	function faultWarnning($ele,opt,cls)
+	{
+		$ele.append('<div><li class='+cls+'>当前站:'+opt.nowStation+'</li>');
+		$ele.append('<li class='+cls+" ui-state-default"+'>下一站:'+opt.nextStation+'</li>');
+		$ele.append('<li class='+cls+" ui-state-default"+'>网流:'+opt.webFlow+'</li>');
+		$ele.append('<li class='+cls+" ui-state-default"+'>模式:'+opt.mode+'</li></div>');
+	}
+
+	var train={
+			train01:{
+				trainnum:"0301",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train02:{
+				trainnum:"0302",
+				faultState:"on",
+				runningState:"off",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train03:{
+				trainnum:"0303",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train04:{
+				trainnum:"0304",
+				faultState:"off",
+				runningState:"off",
+				stopState:"on",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train05:{
+				trainnum:"0305",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train06:{
+				trainnum:"0306",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train07:{
+				trainnum:"0307",
+				faultState:"on",
+				runningState:"off",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train08:{
+				trainnum:"0308",
+				faultState:"on",
+				runningState:"off",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train09:{
+				trainnum:"0309",
+				faultState:"off",
+				runningState:"off",
+				stopState:"on",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train10:{
+				trainnum:"0310",
+				faultState:"off",
+				runningState:"off",
+				stopState:"on",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train11:{
+				trainnum:"0311",
+				faultState:"on",
+				runningState:"off",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train12:{
+				trainnum:"0312",
+				faultState:"on",
+				runningState:"off",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train13:{
+				trainnum:"0313",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train14:{
+				trainnum:"0314",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train15:{
+				trainnum:"0315",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train16:{
+				trainnum:"0316",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train17:{
+				trainnum:"0317",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train18:{
+				trainnum:"0318",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train19:{
+				trainnum:"0319",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train20:{
+				trainnum:"0320",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train21:{
+				trainnum:"0321",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},
+			train22:{
+				trainnum:"0322",
+				faultState:"off",
+				runningState:"on",
+				stopState:"off",
+				nowStation:"华南广场",
+				nextStation:"华南北",
+				webFlow:10,
+				mode:"auto"
+			},	
+		}
+		</script>
+	</div>
+	</body>
+</html>

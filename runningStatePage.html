@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	   	<script src="js/jQuery/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.dataTables.js" ></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js" ></script>
+		<script type="text/javascript" src="input.js"></script>
+		<link rel="stylesheet" href="css/dataTables.jqueryui.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+		
+	</head>
+	<body>
+		<div id="runningstatepage">
+				<div class="runningstateTable">
+					<table id="runningstate">
+						<tr>
+							<th>网压</th>
+							<th>网流</th>
+							<th>速度</th>
+							<th>牵引/制动级位</th>
+							<th>当前站</th>
+							<th>下一站</th>
+							<th>终点站</th>
+							<th rowspan="2"><img src="images/warning.png" style="width: 100%; height:100%;"/></th>
+						</tr>
+						<tr>
+							<td id="RSPNetVoltage"><span>V</span></td>
+							<td id="RSPWebFlow"><span>A</span></td>
+							<td id="RSPSpeed"><span>km/h</span></td>
+							<td id="RSPLevel"></td>
+							<td id="RSPCurrentPosition"></td>
+							<td id="RSPNextPosition"></td>
+							<td id="RSPLastStop"></td>
+						</tr>
+					</table>
+					<div id="trainStateImg"><img src="images/trainState.png"/></div>
+					<div>
+						<table border="1px solid white" class="trainspecificstate">
+							<tr id="RSPAuxiliaryState">
+								<th>辅助状态</th>
+								<td colspan="2" id="RSPAuxiliaryState1"></td>
+								<td colspan="2" id="RSPAuxiliaryState2"></td>
+								<td colspan="2" id="RSPAuxiliaryState3"></td>
+								<td colspan="2" id="RSPAuxiliaryState4"></td>
+								<td colspan="2" id="RSPAuxiliaryState5"></td>
+								<td colspan="2" id="RSPAuxiliaryState6"></td>
+								<td colspan="2" id="RSPAuxiliaryState7"></td>
+								<td colspan="2" id="RSPAuxiliaryState8"></td>
+							</tr>
+							<tr id="RSPTractState">
+								<th>牵引系统状态</th>
+								<td colspan="2" id="RSPTractState1"></td>
+								<td colspan="2" id="RSPTractState2"></td>
+								<td colspan="2" id="RSPTractState3"></td>
+								<td colspan="2" id="RSPTractState4"></td>
+								<td colspan="2" id="RSPTractState5"></td>
+								<td colspan="2" id="RSPTractState6"></td>
+								<td colspan="2" id="RSPTractState7"></td>
+								<td colspan="2" id="RSPTractState8"></td>
+							</tr>
+							<tr id="RSPBrakepressure">
+								<th>制动缸压力</th>
+								<td id="RSPBrakePressure1"></td>
+								<td id="RSPBrakePressure2"></td>
+								<td id="RSPBrakePressure3"></td>
+								<td id="RSPBrakePressure4"></td>
+								<td id="RSPBrakePressure5"></td>
+								<td id="RSPBrakePressure6"></td>
+								<td id="RSPBrakePressure7"></td>
+								<td id="RSPBrakepressure8"></td>
+								<td id="RSPBrakepressure9"></td>
+								<td id="RSPBrakepressure10"></td>
+								<td id="RSPBrakePressure11"></td>
+								<td id="RSPBrakePressure12"></td>
+								<td id="RSPBrakePressure13"></td>
+								<td id="RSPBrakePressure14"></td>
+								<td id="RSPBrakePressure15"></td>
+								<td id="RSPBrakePressure16"></td>
+							</tr>
+							<tr id="RSPBrakeIso">
+								<th>制动隔离</th>
+								<td id="RSPBrakeIso1"></td>
+								<td id="RSPBrakeIso2"></td>
+								<td id="RSPBrakeIso3"></td>
+								<td id="RSPBrakeIso4"></td>
+								<td id="RSPBrakeIso5"></td>
+								<td id="RSPBrakeIso6"></td>
+								<td id="RSPBrakeIso7"></td>
+								<td id="RSPBrakeIso8"></td>
+								<td id="RSPBrakeIso9"></td>
+								<td id="RSPBrakeIso10"></td>
+								<td id="RSPBrakeIso11"></td>
+								<td id="RSPBrakeIso12"></td>
+								<td id="RSPBrakeIso13"></td>
+								<td id="RSPBrakeIso14"></td>
+								<td id="RSPBrakeIso15"></td>
+								<td id="RSPBrakeIso16"></td>
+							</tr>
+							<tr id="RSPInnerTemperature">
+								<th>车内温度℃</th>
+								<td colspan="2" id="RSPInnerTemperature1"></td>
+								<td colspan="2" id="RSPInnerTemperature2"></td>
+								<td colspan="2" id="RSPInnerTemperature3"></td>
+								<td colspan="2" id="RSPInnerTemperature4"></td>
+								<td colspan="2" id="RSPInnerTemperature5"></td>
+								<td colspan="2" id="RSPInnerTemperature6"></td>
+								<td colspan="2" id="RSPInnerTemperature7"></td>
+								<td colspan="2" id="RSPInnerTemperature8"></td>
+							</tr>
+							<tr id="RSPAirCompressorState">
+								<th>空压机状态</th>
+								<td colspan="2" id="RSPAirCompressorState1"></td>
+								<td colspan="2" id="RSPAirCompressorState2"></td>
+								<td colspan="2" id="RSPAirCompressorState3"></td>
+								<td colspan="2" id="RSPAirCompressorState4"></td>
+								<td colspan="2" id="RSPAirCompressorState5"></td>
+								<td colspan="2" id="RSPAirCompressorState6"></td>
+								<td colspan="2" id="RSPAirCompressorState7"></td>
+								<td colspan="2" id="RSPAirCompressorState8"></td>
+							</tr>
+							<tr id="RSPParkBrake">
+								<th>停放制动</th>
+								<td colspan="2" id="RSPParkBrake1"></td>
+								<td colspan="2" id="RSPParkBrake2"></td>
+								<td colspan="2" id="RSPParkBrake3"></td>
+								<td colspan="2" id="RSPParkBrake4"></td>
+								<td colspan="2" id="RSPParkBrake5"></td>
+								<td colspan="2" id="RSPParkBrake6"></td>
+								<td colspan="2" id="RSPParkBrake7"></td>
+								<td colspan="2" id="RSPParkBrake8"></td>
+							</tr>
+							<tr id="RSPRidingRate">
+								<th>乘车率</th>
+								<td colspan="2" id="RSPRidingRate1"></td>
+								<td colspan="2" id="RSPRidingRate2"></td>
+								<td colspan="2" id="RSPRidingRate3"></td>
+								<td colspan="2" id="RSPRidingRate4"></td>
+								<td colspan="2" id="RSPRidingRate5"></td>
+								<td colspan="2" id="RSPRidingRate6"></td>
+								<td colspan="2" id="RSPRidingRate7"></td>
+								<td colspan="2" id="RSPRidingRate8"></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<style type="text/css">
+					label
+					{
+						font-family: "楷体";
+						font-size: 18px;
+					}
+					.checktrain
+					{
+						width: 100%;
+						height: 60px;
+						padding-top: 15px;
+						border-bottom: 2px #ACACB4 solid;
+					}
+					#trainnum
+					{
+						width: 100px;
+						height: 30px;
+						font-family: "微软雅黑";
+						font-size: 16px;
+					}
+					.runningstateTable
+					{
+						width: 100%;
+						height: 600px;
+						background-color:white;
+					}
+					tr
+					{
+						margin-top: 10px;
+						border: solid white 2px;
+					}
+					td
+					{
+						background-color: #000000;
+						font:"微软雅黑";
+						color: white;
+						font-size: 16px;
+						width: 100px;
+						height: 40px;
+						text-align: center;
+						border: solid 2px white;
+					}
+					th
+					{
+						background-color: #000000;
+						font:"微软雅黑";
+						color: white;
+						font-size: 16px;
+						width: 110px;
+						height: 40px;
+						text-align: center;
+						border: solid 2px white;
+					}
+					#trainStateImg{
+						margin-left: 80px;
+					}
+					#trainStateImg img
+					{
+						margin-left:83px;
+						border-left-width: 2px;
+						border-left-color: white;
+						border-left-style: solid;
+						border-top-color: white;
+						border-top-style: solid;
+						border-top-width: 2px;
+					}
+					table.trainspecificstate th
+					{
+						background-color: #000000;
+						font:"微软雅黑";
+						color: white;
+						font-size: 14px;
+						width: 102px;
+						height: 25px;
+						text-align: center;
+						border: solid 2px white;
+					}
+					table.trainspecificstate td
+					{
+						background-color: #000000;
+						font:"微软雅黑";
+						color: white;
+						font-size: 16px;
+						width: 45px;
+						height: 25px;
+						text-align: center;
+						border: solid 2px white;
+					}
+					
+				</style>
+				<script type="text/javascript">
+					$(function(){
+						var trainNum=$("#trainnum").val();
+//						$("#trainnum").change(function(){changeValue();});
+//						function changeValue(){
+//							 trainNum=$("#trainnum").val();
+//						};
+//						$("#tes").click(function(){ 
+//							alert(trainNum);
+//						});
+						var trainInfo={
+							"netVoltage":100,
+							"webFlow":90,
+							"trainSpeed":100,
+							"trainLevel":80,
+							"currentPosition":"小平岛",
+							"nextPosition":"七贤岭",
+							"lastStop":"海事大学",
+							"warningState":true,
+							
+						}
+						setTrainState("0001",trainInfo);
+					});
+					function setTrainState(trainNum,trainInfo)
+					{
+						$("#RSPNetVoltage").prepend(trainInfo.netVoltage);
+						$("#RSPWebFlow").prepend(trainInfo.webFlow);
+						$("#RSPSpeed").prepend(trainInfo.trainSpeed);
+						$("#RSPLevel").append(trainInfo.trainLevel+'%');
+						$("#RSPCurrentPosition").append(trainInfo.currentPosition);
+						$("#RSPNextPosition").append(trainInfo.nextPosition);
+						$("#RSPLastStop").append(trainInfo.lastStop);
+						var img=$("img").eq(0);
+						if(trainInfo.warningState)
+						{
+							setInterval(blink,1000,img);
+						}
+						else
+						{}
+						for (var i=0;i<8;i++) {
+							$("#RSPAuxiliaryState").children("td").eq(i).append('--');
+						}
+						for (var i=0;i<8;i++) {
+							$("#RSPTractState").children("td").eq(i).append('--');
+						}
+						for (var i=0;i<16;i++) {
+							$("#RSPBrakepressure").children('td').eq(i).append('--');
+						}
+						for (var i=0;i<16;i++) {
+							$("#RSPBrakeIso").children("td").eq(i).append('--');
+						}
+						for (var i=0;i<8;i++) {
+							$("#RSPInnerTemperature").children("td").eq(i).append('--');
+						}
+						for (var i=0;i<8;i++) {
+							$("#RSPAirCompressorState").children("td").eq(i).append('--');
+						}
+						for (var i=0;i<8;i++) {
+							$("#RSPParkBrake").children("td").eq(i).append('--');
+						}
+						for (var i=0;i<8;i++) {
+							$("#RSPRidingRate").children('td').eq(i).append('--');
+						}
+					}
+					function blink($ele)
+					{
+						$ele.hide(100);
+						setTimeout(function(){},1000);
+						$ele.show(100);
+					}
+			</script>
+		</div>
+	</body>
+</html>

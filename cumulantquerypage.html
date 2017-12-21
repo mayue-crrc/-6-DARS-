@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!--以下两个script src为引出tabs而引入到文件中-->
+		<script src="js/jQuery/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.dataTables.js" ></script>
+		<script type="text/javascript" src="js/jquery-ui.min.js" ></script>
+		<script src="js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="input.js"></script>
+		<link rel="stylesheet" href="css/dataTables.jqueryui.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+		<title></title>
+		
+	</head>
+	<body>
+		<div id="cumulantcontent">
+			<style type="text/css">
+			label
+			{
+				font-family: "楷体";
+				font-size: 18px;
+			}
+			#cumulant-check-metornumber
+			{
+				width: 100%;
+				height: 60px;
+				padding-top: 15px;
+				border-bottom: 2px #ACACB4 solid;
+			}
+			#cumulant-check-metornumber th
+			{
+				font-size: 10px;
+				border-bottom: 2px silver solid;
+				border-top: 2px silver solid;
+				background-color: steelblue;
+				color: white;
+				text-align: center;
+				white-space: nowrap !important;  
+			}
+			td
+			{
+				text-align: center;
+			}
+			#cumulant-query-table th
+			{
+				font-size: 10px;
+				border-bottom: 2px silver solid;
+				border-top: 2px silver solid;
+				background-color: steelblue;
+				color: white;
+				text-align: center;
+			}
+		</style>
+			<div id="cumulant-check-metornumber">
+				<div id="cumulant-tabs">
+					<ul>
+						<li class="chance-1"><a href="#cumulant-tabs-1">累积量总览</a></li>
+						<li class="chance-2"><a href="#cumulant-tabs-2">累计量查询</a></li>
+					</ul>
+						<div id="cumulant-tabs-1">		
+							<div id="cumulantdata">
+								<label for="" id="todaycomulant">当天累计量</label>
+								<table  id="cumulant-item-table" class="display">
+									<thead>
+										<tr>
+											<th>车辆编号</th>
+											<th>数据时间</th>
+											<th>运行时长</th>
+											<th>检修里程</th>
+											<th>总里程</th>
+											<th>牵引能耗</th>
+											<th>再生电量</th>
+											<th>辅助能耗</th>
+											<th>TC1车压缩机工作时长</th>
+											<th>TC2车压缩机工作时长</th>
+											<th>TC1车压缩机工作率</th>
+											<th>TC2车压缩机工作率</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="historycomulant">
+								<label >总累计量</label>
+								<table  id="cumulant-history-table" class="display">
+									<thead>
+										<tr>
+											<th>车辆编号</th>
+											<th>数据时间</th>
+											<th>运行时长</th>
+											<th>检修里程</th>
+											<th>总里程</th>
+											<th>牵引能耗</th>
+											<th>再生电量</th>
+											<th>辅助能耗</th>
+											<th>TC1车压缩机工作时长</th>
+											<th>TC2车压缩机工作时长</th>
+											<th>TC1车压缩机工作率</th>
+											<th>TC2车压缩机工作率</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>		
+					</div>
+					<div id="cumulant-tabs-2">
+						<div id="cumulant-query">
+							<label >总累查询</label>
+							<table  id="cumulant-query-table" class="display">
+								<thead>
+										<tr>
+											<th>车辆编号</th>
+											<th>数据时间</th>
+											<th>运行时长</th>
+											<th>检修里程</th>
+											<th>总里程</th>
+											<th>牵引能耗</th>
+											<th>再生电量</th>
+											<th>辅助能耗</th>
+											<th>TC1车压缩机工作时长</th>
+											<th>TC2车压缩机工作时长</th>
+											<th>TC1车压缩机工作率</th>
+											<th>TC2车压缩机工作率</th>
+										</tr>
+								</thead>
+								<tbody>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+										<tr>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+											<td>ssss</td>
+										</tr>
+								</tbody>
+							</table>	
+						</div>		
+					</div>
+				</div>		
+			<script type="text/javascript">
+				var  cumulantFlag;
+			function cumulantQueryPageInit(){
+				cumulantFlag=true;
+				$("#cumulant-item-table").DataTable(
+					{
+						bSort:false,
+						bLengthChange:false,
+						searching: false,
+						ordering:  false,
+						scrollY: 200,
+						scrollX: true,
+						bInfo:false,
+					}
+				);
+				$("#cumulant-history-table").DataTable({
+						bSort:false,
+						bLengthChange:false,
+						searching: false,
+						ordering:  false,
+						scrollY: 200,
+						scrollX: true,
+						bInfo:false,
+				});
+				$("#cumulant-query-table").DataTable({
+						bSort:false,
+						bLengthChange:false,
+						searching: false,
+						ordering:  false,
+						scrollY: 200,
+						scrollX:true,
+						bInfo:false,
+						bAutoWidth:true,
+				});
+				$("#cumulant-tabs").tabs();//tabs()一定要在DataTable()之后使用
+				$(".chance-2").click(function(){
+					$("#checkoutmsg label").css("display","inline-block");
+					$("#datepickerstart").css("display","inline-block");
+					$("#datepickerend").css("display","inline-block");
+					cumulantFlag=false;
+				});
+				$(".chance-1").click(function(){
+					$("#checkoutmsg label").css("display","none");
+					$("#datepickerstart").css("display","none");
+					$("#datepickerend").css("display","none");
+					cumulantFlag=true;
+				});
+				$("#maincontent").on("updateDataToCumulantPage",updateData);
+			}
+			function updateData(event,params){
+				//刷新数据
+				var  todayData=document.getElementById("cumulant-item-table");
+				var  historyData=document.getElementById("cumulant-history-table");
+				var  queryHistoryData=document.getElementById("cumulant-query-table");
+				$("#makesure").on('click',function(){
+					if(cumulantFlag)
+					{
+						$.ajax({
+						type:"post",
+						url:'cumulant/today.do',
+						data:params.metroNumber,
+						dataType:'JSON',
+						success:function(data){ 
+							var  dataBean=data;
+							$.each(dataBean, function(index) {
+								todayData.row.add([
+									dataBean[index].metro_code,
+									dataBean[index].time_data,
+									dataBean[index].run_time,
+									dataBean[index].maintenance_mileage,
+									dataBean[index].total_mileage,
+									dataBean[index].tcu_consuption,
+									dataBean[index].regenerate_power,
+									dataBean[index].siv_consuption,
+									dataBean[index].compressor_run_time_tc1,
+									dataBean[index].compressor_run_time_tc2,
+									dataBean[index].compressor_work_rate_tc1,
+									dataBean[index].compressor_work_rate_tc2,
+									]);
+								});
+							},
+						});
+						$.ajax({
+							type:"post",
+							url:"cumulant/total.do",
+							data:params.metroNumber,
+							dataType:'JSON',
+							success:function(data){
+								var  dataBean=data;
+								$.each(dataBean, function(index) {
+									historyData.row.add([
+										dataBean[index].metro_code,
+										dataBean[index].time_data,
+										dataBean[index].run_time,
+										dataBean[index].maintenance_mileage,
+										dataBean[index].total_mileage,
+										dataBean[index].tcu_consuption,
+										dataBean[index].regenerate_power,
+										dataBean[index].siv_consuption,
+										dataBean[index].compressor_run_time_tc1,
+										dataBean[index].compressor_run_time_tc2,
+										dataBean[index].compressor_work_rate_tc1,
+										dataBean[index].compressor_work_rate_tc2,
+									]);
+								});
+							},
+						});
+					}
+					else
+					{
+						$.ajax({
+							type:"post",
+							url:"cumulant/period.do",
+							data:params,
+							dataType:'JSON',
+							success:function(data){
+								var  dataBean=data;
+								$.each(dataBean, function(index) {
+									queryHistoryData.row.add([
+										dataBean[index].metro_code,
+										dataBean[index].time_data,
+										dataBean[index].run_time,
+										dataBean[index].maintenance_mileage,
+										dataBean[index].total_mileage,
+										dataBean[index].tcu_consuption,
+										dataBean[index].regenerate_power,
+										dataBean[index].siv_consuption,
+										dataBean[index].compressor_run_time_tc1,
+										dataBean[index].compressor_run_time_tc2,
+										dataBean[index].compressor_work_rate_tc1,
+										dataBean[index].compressor_work_rate_tc2,
+									]);
+								});
+							},
+						});
+					}
+				});
+			}
+		</script>
+		</div>
+	</body>
+</html>
