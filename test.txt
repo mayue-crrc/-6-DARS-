@@ -1,12 +1,1 @@
-﻿test
-// this is test 2
-<<<<<<< HEAD
-
- master
-=======
-创建 第一个分支new master
-<<<<<<< HEAD
->>>>>>> new-master
-=======
-在new master上编辑
->>>>>>> new-master
+﻿你好
