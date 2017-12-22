@@ -7,6 +7,7 @@ package com.metro.bean;
  */
 public class BasicSignalBean {
 	private int test;
+	private int mayuetest;
 	private int metroCode;
 	private int netCurrent, netVoltage;
 	private int metroSpeed;
