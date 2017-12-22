@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metro.dao.FaultMapper">	
+	<resultMap id="FaultMap" type="com.metro.bean.FaultBean">
+		<id property="id" column="id" javaType="java.lang.Long" />
+		<result property="metroCode" column="metro_code" javaType="java.lang.String" />
+		<result property="faultIndex" column="fault_index" javaType="java.lang.Integer" />
+		<result property="faultName" column="fault_name" javaType="java.lang.String"/>
+		<result property="faultCode" column="fault_code" javaType="java.lang.Integer" />
+		<result property="faultPosition" column="fault_position" javaType="java.lang.String" />
+		<result property="faultDevice" column="fault_device" javaType="java.lang.String" />
+		<result property="faultHint" column="fault_hint" javaType="java.lang.String" />
+		<result property="description" column="description" javaType="java.lang.String" />
+		<result property="startTime" column="time_start" javaType="java.sql.Timestamp" />
+		<result property="endTime" column="time_end" javaType="java.sql.Timestamp" />
+	</resultMap>
+	
+	<insert id="insertFault" useGeneratedKeys="true" keyProperty="id" parameterType="com.metro.bean.FaultBean">
+		insert into current_fault_view(fault_index, metro_code, time_start, time_end)
+			values(#{faultIndex}, #{metroCode}, #{startTime}, #{endTime})
+	</insert>  
+	
+	<update id ="updateFault" parameterType="com.metro.bean.FaultBean">
+		update current_fault_view set time_end=#{endTime} 
+			where fault_index=#{faultIndex} and metro_code=#{metroCode} 
+	</update>
+	
+	<select id="selectCurrentFaultSum" resultType="java.lang.Integer">
+		select count(*) from current_fault_view
+	</select>
+	
+	<select id="selectHistoryFaultSum" resultType="java.lang.Integer">
+		select count(*) from fault_table
+	</select>
+	
+	<select id="selectCurrentFault" resultMap="FaultMap">
+		select cfv.id, 
+			   cfv.metro_code, 
+			   cfv.fault_index,
+			   ftt.fault_name,
+			   ftt.fault_code,
+			   ftt.fault_position,
+			   ftt.fault_device,
+			   ftt.fault_hint,
+			   ftt.fault_description,
+			   cfv.time_start 
+		from (select * from current_fault_view order by time_start limit #{offsetStart}, #{rowCount}) as cfv
+			left join(select * from fault_type_table 
+								where exists(select * from current_fault_view 
+												where current_fault_view.fault_index = fault_type_table.fault_index)) as ftt
+		on cfv.fault_index = ftt.fault_index
+		order by time_start desc
+	</select>
+	
+	<select id="selectHistoryFault" resultMap="FaultMap">
+		select ft.id, 
+		       ft.metro_code, 
+		       ft.fault_index,
+			   ftt.fault_name,
+			   ftt.fault_code,
+			   ftt.fault_position,
+			   ftt.fault_device,
+			   ftt.fault_hint,
+			   ftt.fault_description,
+			   ft.time_start 
+		from (select * from fault_table order by time_start limit #{offsetStart}, #{rowCount}) as ft
+			left join(select * from fault_type_table 
+								where exists(select * from fault_table 
+												where fault_table.fault_index = fault_type_table.fault_index)) as ftt
+		on ft.fault_index = ftt.fault_index
+		order by time_start desc
+	</select>
+	
+	<select id="selectHistoryFaultByMetroCode" resultMap="FaultMap">
+		select ft.id, 
+		       ft.metro_code, 
+		       ft.fault_index,
+			   ftt.fault_name,
+			   ftt.fault_code,
+			   ftt.fault_position,
+			   ftt.fault_device,
+			   ftt.fault_hint,
+			   ftt.fault_description,
+			   ft.time_start 
+		from (select * from fault_table where metro_code = #{metroCode} order by time_start limit #{offsetStart}, #{rowCount}) as ft
+			left join(select * from fault_type_table 
+								where exists(select * from fault_table 
+												where fault_table.fault_index = fault_type_table.fault_index)) as ftt
+		on ft.fault_index = ftt.fault_index
+		order by time_start desc		
+	</select>
+	
+	<select id="selectHistoryFaultByMetroCodeAndTime" resultMap="FaultMap">
+		select ft.id as id, 
+		       ft.metro_code, 
+		       ft.fault_index,
+			   ftt.fault_name,
+			   ftt.fault_code,
+			   ftt.fault_position,
+			   ftt.fault_device,
+			   ftt.fault_hint,
+			   ftt.fault_description,
+			   ft.time_start 
+		from (select * from fault_table 
+				where metro_code = #{metroCode} and time_start between #{from} and #{to} 
+					order by time_start limit #{offsetStart}, #{rowCount}) as ft
+			left join(select * from fault_type_table 
+								where exists(select * from fault_table 
+												where fault_table.fault_index = fault_type_table.fault_index)) as ftt
+		on ft.fault_index = ftt.fault_index
+		order by time_start desc	
+	</select>
+	
+	<select id="selectHistoryFaultSumByMetroCodeAndTime" resultType="java.lang.Integer">
+		select count(ft.id)
+		from (select * from fault_table 
+				where metro_code = #{metroCode} and time_start between #{from} and #{to} 
+					order by time_start limit #{offsetStart}, #{rowCount}) as ft
+			left join(select * from fault_type_table 
+								where exists(select * from fault_table 
+												where fault_table.fault_index = fault_type_table.fault_index)) as ftt
+		on ft.fault_index = ftt.fault_index
+		order by time_start desc	
+	</select>
+	
+	<select id="selectCurrentFaultItemSum" resultType="java.lang.Long">
+		select count(*) from current_fault_view
+	</select>
+	
+	<select id="selectHistoryFaultItemSum" resultType="java.lang.Long">
+		select count(*) from fault_table
+	</select>
+	
+	<select id="" resultType="java.lang.Long">
+		select count(*) from fault_table
+			where metro_code=#{metroCode} 
+				and time_start between #{from} and #{to}
+	</select>
+</mapper>

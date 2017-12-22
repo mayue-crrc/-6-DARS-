@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" 
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">	
+<mapper namespace="com.metro.dao.UserMapper">		
+	<resultMap id="userMap" type="UserBean">
+		<id property="id" column="id" javaType="java.lang.Integer" />
+		<result property="userName" column="user_name" javaType="java.lang.String" />
+		<result property="password" column="password" javaType="java.lang.String" />
+		<result property="userType" column="user_type" javaType="java.lang.String"/>
+		<result property="createTime" column="create_time" javaType="java.sql.Timestamp" />
+		<result property="enable" column="enable" javaType="java.lang.Boolean" />
+		<result property="description" column="description" javaType="java.lang.String" />
+	</resultMap>
+	
+	<insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+		insert into user_table(user_name, password, user_type, create_time, enable, description) 
+						values(#{userName}, #{password}, #{userType}, #{createTime}, #{enable}, #{description})
+	</insert>
+	
+	<delete id="deleteUser" parameterType="java.lang.String">
+		delete from user_table where user_name=#{userName}
+	</delete>
+	
+	<update id="updateUser" parameterType="com.metro.bean.UserBean">
+		update user_table set password=#{password}, user_type=#{userType}, enable=#{enable}, 
+			create_time=#{createTime}, description=#{description} where user_name=#{userName}
+	</update>
+	
+	<select id="selectUserByUserName" parameterType="java.lang.String" resultType="com.metro.bean.UserBean">
+		select id as "id",
+			   user_name as "userName",
+			   password as "password",
+			   user_type as "userType",
+			   create_time as "createTime",
+			   enable as "enable",
+			   description as "description"
+		from user_table 
+		where user_name=#{userName}
+	</select>
+	
+	<select id="selectAllUser" resultMap ="userMap">
+		select * from user_table
+	</select>
+</mapper>

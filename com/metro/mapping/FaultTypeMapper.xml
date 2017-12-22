@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metro.dao.MetroMapper">	
+	<resultMap id="metroMap" type="MetroBean">
+		<id property="id" column="id" javaType="java.lang.Integer" />
+		<result property="metroCode" column="metro_code" javaType="java.lang.String" />
+		<result property="metroType" column="metro_type" javaType="java.lang.String" />
+		<result property="manufacturer" column="manufacturer" javaType="java.lang.String"/>
+		<result property="dateManufacture" column="date_manufacture" javaType="java.sql.Date" />
+		<result property="line" column="line" javaType="java.lang.String" />
+		<result property="description" column="description" javaType="java.lang.String" />
+	</resultMap>
+	
+	<insert id="insertMetro" useGeneratedKeys="true" keyProperty="id">
+		insert into metro_table(metro_code, metro_type, manufacturer, date_manufacture, line, description)
+			values(#{metroCode}, #{metroType}, #{manufacturer}, #{dateManufacture}, #{line}, #{description})
+	</insert>
+		
+	<delete id="deleteMetro" parameterType="java.lang.String">
+		delete from metro_table where metro_code=#{metroCode}
+	</delete>
+	
+	<update id = "updateMetro" parameterType="com.metro.bean.MetroBean">
+		update metro_table set metro_type=#{metroType}, manufacturer=#{manufacturer}, date_manufacture=#{dateManufacture},
+				line=#{line}, description=#{description} where metro_code=#{metroCode}
+	</update>
+	
+	<select id="selectMetroByMetroCode" parameterType="java.lang.String" resultType="com.metro.bean.MetroBean">
+		select
+			id as "id",
+			metro_code as "metroCode",
+			metro_type as "metroType",
+			manufacturer as "manufacturer",
+			date_manufacture as "dateManufacture",
+			line as "line",
+			description as "description"
+		from metro_table
+		where metro_code=#{metroCode}
+	</select>
+	
+	<select id="selectAllMetro" resultMap="metroMap">
+		select * from metro_table
+	</select>
+</mapper>
