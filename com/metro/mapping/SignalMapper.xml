@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metro.dao.SignalMapper">	
+	<resultMap id="SignalTypeMap" type="com.metro.bean.SignalTypeBean">
+		<result property="signalName" column="signal_name" javaType="java.lang.String" />
+		<result property="signalType" column="signal_type" javaType="java.lang.Integer" />
+		<result property="signalDevice" column="signal_device" javaType="java.lang.String"/> 
+		<result property="byteAddress" column="byte_address" javaType="java.lang.Integer" />
+		<result property="bitAddress" column="bit_address" javaType="java.lang.Integer" />
+		<result property="description" column="description" javaType="java.lang.String" />
+	</resultMap>
+	
+	<sql id="signal_table_column">
+    	id, data1, data2, data3, data4, data5, data6, data7, data8, data9, data10,
+    	data11, data12, data13, data14, data15, data16, data17, data18, data19, 
+    	data20, data21, data22, data23, data24, data25, data26, data27, data28, 
+    	data29, data30, data31, data32, data33, data34, data35
+  	</sql>
+  	
+  	<sql id="signal_table_property">
+    	#{id}, #{data1}, #{data2}, #{data3}, #{data4}, #{data5}, #{data6}, #{data7}, #{data8}, #{data9}, #{data10},
+    	#{data11}, #{data12}, #{data13}, #{data14}, #{data15}, #{data16}, #{data17}, #{data18}, #{data19}, 
+    	#{data20}, #{data21}, #{data22}, #{data23}, #{data24}, #{data25}, #{data26}, #{data27}, #{data28}, 
+    	#{data29}, #{data30}, #{data31}, #{data32}, #{data33}, #{data34}, #{data35}
+  	</sql>  
+	
+	<select id="selectAllSignalType" resultMap="SignalTypeMap">
+		select * from signal_type_table
+	</select>
+	
+	<select id="selectInsertId" resultType="java.lang.Long">
+		select last_insert_id()
+	</select>
+	
+	<insert id="insertSubSignal" parameterType="com.metro.bean.SubSignalBean">
+		<if test="table == 1">
+			insert into signal_table1(<include refid="signal_table_column" />)
+			values(<include refid="signal_table_property" />)
+		</if>
+			
+		<if test="table == 2">
+			insert into signal_table2(<include refid="signal_table_column" />)
+			values(<include refid="signal_table_property" />)
+		</if>
+
+		<if test="table == 3">
+			insert into signal_table3(<include refid="signal_table_column" />)
+				values(<include refid="signal_table_property" />)
+		</if>
+			
+		<if test="table == 4">
+			insert into signal_table4(<include refid="signal_table_column" />)
+				values(<include refid="signal_table_property" />)
+		</if>
+	</insert>  
+	
+	<insert id="insertSignalGroup">
+		<selectKey keyColumn="id" resultType="java.lang.Long" keyProperty="id" order="AFTER" />
+		insert into signal_group(metro_code, time_data)
+				values(#{metroCode}, #{timeData})
+	</insert>
+</mapper>

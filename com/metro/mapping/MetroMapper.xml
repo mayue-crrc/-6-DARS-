@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metro.dao.FaultTypeMapper">	
+	<resultMap id="FaultTypeMap" type="FaultTypeBean">
+		<id property="id" column="id" javaType="java.lang.Integer" />
+		<result property="faultIndex" column="fault_index" javaType="java.lang.Integer" />
+		<result property="faultName" column="fault_name" javaType="java.lang.String" />
+		<result property="faultCode" column="fault_code" javaType="java.lang.Integer"/>
+		<result property="faultPosition" column="fault_position" javaType="java.lang.String" />
+		<result property="faultDevice" column="fault_device" javaType="java.lang.String" />
+		<result property="faultHint" column="fault_hint" javaType="java.lang.String" />
+		<result property="description" column="fault_description" javaType="java.lang.String" />
+		<result property="byteAddress" column="byte_address" javaType="java.lang.Integer" />
+		<result property="bitAddress" column="bit_address" javaType="java.lang.Integer" />
+		<result property="virtualValue" column="virtual_value" javaType="java.lang.Boolean" />
+	</resultMap>
+	
+	<select id="selectAllFaultType" resultMap="FaultTypeMap">
+		select * from fault_type_table
+	</select>
+</mapper>

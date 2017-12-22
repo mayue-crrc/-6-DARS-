@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metro.dao.CumulantMapper">	
+	<resultMap id="CumulantMap" type="CumulantBean">
+		<id property="id" column="id" javaType="java.lang.Long" />
+		<result property="metroCode" column="metro_code" javaType="java.lang.String" />
+		<result property="timeData" column="time_data" javaType="java.sql.Date" />
+		<result property="runTime" column="run_time" javaType="java.lang.Long"/>
+		<result property="maintenanceMileage" column="maintenance_mileage" javaType="java.lang.Long" />
+		<result property="totalMileage" column="total_mileage" javaType="java.lang.Long" />
+		<result property="tcuConsuption" column="tcu_consuption" javaType="java.lang.Long" />
+		<result property="regeneratePower" column="regenerate_power" javaType="java.lang.Long" />
+		<result property="sivConsuption" column="siv_consuption" javaType="java.lang.Long" />
+		<result property="compressorRunTimeTc1" column="compressor_run_time_tc1" javaType="java.lang.Long" />
+		<result property="compressorRunTimeTc2" column="compressor_run_time_tc2" javaType="java.lang.Long" />
+		<result property="compressorWorkRateTc1" column="compressor_work_rate_tc1" javaType="java.lang.Integer" />
+		<result property="compressorWorkRateTc2" column="compressor_work_rate_tc2" javaType="java.lang.Integer" />
+	</resultMap>
+	
+	<insert id="insertCumulant" useGeneratedKeys="true" keyProperty="id">
+		insert into cumulant_table(metro_code, time_data, run_time, maintenance_mileage, total_mileage,
+								   tcu_consuption, regenerate_power, siv_consuption, compressor_run_time_tc1,
+								   compressor_run_time_tc2, compressor_work_rate_tc1, compressor_work_rate_tc2)
+		values(#{metroCode}, #{timeData}, #{runTime}, #{maintenanceMileage}, #{totalMileage}, #{tcuConsuption},
+			   #{regeneratePower}, #{sivConsuption}, #{compressorRunTimeTc1}, #{compressorRunTimeTc2},
+			   #{compressorWorkRateTc1}, #{compressorWorkRateTc2})
+	</insert>
+	
+	<update id="updateCumulant" parameterType="com.metro.bean.CumulantBean">
+		update cumulant_table set metro_code=#{metroCode},
+								  time_data=#{timeData},
+								  run_time=#{runTime},
+								  maintenance_mileage=#{maintenanceMileage},
+								  total_mileage=#{totalMileage},
+								  tcu_consuption=#{tcuConsuption},
+								  regenerate_power=#{regeneratePower},
+								  siv_consuption=#{sivConsuption},
+								  compressor_run_time_tc1=#{compressorRunTimeTc1},
+								  compressor_run_time_tc2=#{compressorRunTimeTc2},
+								  compressor_work_rate_tc1=#{compressorWorkRateTc1},
+								  compressor_work_rate_tc2=#{compressorWorkRateTc2}
+		where metro_code=#{metroCode} and time_data=#{timeData}
+	</update>
+	
+	<select id="selectCumulantByMetroCodeAndDate" resultType="com.metro.bean.CumulantBean">
+		select id as id,
+			   metro_code as metroCode,
+			   time_data as timeData,
+			   run_time as runTime,
+			   maintenance_mileage as maintenanceMileage,
+			   total_mileage as totalMileage,
+			   tcu_consuption as tcuConsuption,
+			   regenerate_power as regeneratePower,
+			   siv_consuption as sivConsuption,
+			   compressor_run_time_tc1 as compressorRunTimeTc1,
+			   compressor_run_time_tc2 as compressorRunTimeTc2,
+			   compressor_work_rate_tc1 as compressorWorkRateTc1,
+			   compressor_work_rate_tc2 as compressorWorkRateTc2
+		from cumulant_table where metro_code=#{metroCode} and time_data &lt;= #{timeData}
+		order by time_data desc
+		limit 0, 1
+	</select>
+	
+	<select id="selectTwoCumulantByMetroCode" parameterType="java.lang.String" resultMap="CumulantMap">
+		select * from cumulant_table 
+			where metro_code=#{metroCode}
+			order by time_data desc
+			limit 0, 2 
+	</select>
+</mapper>
