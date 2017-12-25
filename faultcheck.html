@@ -71,6 +71,24 @@
 				margin-left: 10px;
 				margin-bottom:10px;
 			}
+			
+			.mytabs
+			{
+				
+			}
+			.mytabs-nav mytabs
+			{
+								background-color: red;
+
+			}
+			.mytabs-top mytabs
+			{
+				
+			}
+			.mytabs-bottom mytabs
+			{
+				background-color: red;
+			}
 		</style>
 	
 	<div id="tabs">
@@ -179,6 +197,16 @@
         return a;  
     }
 	function initView(){
+		
+		$( "#tabs" ).tabs({
+			classes:{
+		      "ui-tabs":"mytabs",
+			  "ui-tabs-nav": "mytabs-nav",
+			  "ui-tabs-tab": "mytabs-top",
+			  "ui-tabs-panel": "mytabs-bottom"
+			}
+		});
+
 		$("#nowfautlt1").DataTable({
 			"bPaginate":false,
 			"searching":false,
@@ -209,7 +237,6 @@
 			"bAutoWidth":true,
 
 		});
-		$( "#tabs" ).tabs();
 		$( "#datepickerstart" ).datetimepicker({
 		});
 		$( "#datepickerend" ).datetimepicker({

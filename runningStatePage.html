@@ -14,28 +14,19 @@
 	<body>
 		<div id="runningstatepage">
 				<div class="runningstateTable">
-					<table id="runningstate">
-						<tr>
-							<th>网压</th>
-							<th>网流</th>
-							<th>速度</th>
-							<th>牵引/制动级位</th>
-							<th>当前站</th>
-							<th>下一站</th>
-							<th>终点站</th>
-							<th rowspan="2"><img src="images/warning.png" style="width: 100%; height:100%;"/></th>
-						</tr>
-						<tr>
-							<td id="RSPNetVoltage"><span>V</span></td>
-							<td id="RSPWebFlow"><span>A</span></td>
-							<td id="RSPSpeed"><span>km/h</span></td>
-							<td id="RSPLevel"></td>
-							<td id="RSPCurrentPosition"></td>
-							<td id="RSPNextPosition"></td>
-							<td id="RSPLastStop"></td>
-						</tr>
-					</table>
-					<div id="trainStateImg"><img src="images/trainState.png"/></div>
+					<div class="trainpanto" style="margin-left: 22.2%;" ></div>
+					<div class="trainpanto" style="margin-left: 18.4%;"></div>
+					<div class="trainpanto" style="margin-left: 29.3%;margin-right: 120px; "></div>
+					<div class="trainbody" style="margin-left: 100px;">0601</div>
+					<div class="trainbody">0602</div>
+					<div class="trainbody">0603</div>
+					<div class="trainbody">0604</div>
+					<div class="trainbody">0605</div>
+					<div class="trainbody">0606</div>
+					<div class="trainbody">0607</div>
+					<div class="trainbody">0608</div>
+					
+
 					<div>
 						<table border="1px solid white" class="trainspecificstate">
 							<tr id="RSPAuxiliaryState">
@@ -50,7 +41,7 @@
 								<td colspan="2" id="RSPAuxiliaryState8"></td>
 							</tr>
 							<tr id="RSPTractState">
-								<th>牵引系统状态</th>
+								<th>牵引状态</th>
 								<td colspan="2" id="RSPTractState1"></td>
 								<td colspan="2" id="RSPTractState2"></td>
 								<td colspan="2" id="RSPTractState3"></td>
@@ -144,95 +135,74 @@
 							</tr>
 						</table>
 					</div>
+					<div id="trainStateImg"><img src="images/trainState.png"/></div>
 				</div>
 				<style type="text/css">
-					label
+
+					.trainbody
 					{
-						font-family: "楷体";
-						font-size: 18px;
+				    	float: left;
+				    	margin-left: 3px;
+				    	margin-bottom: 15px;
+				    	border-radius: 10px;
+				    	width:11%;
+				    	height: 45px;
+				    	line-height: 45px;
+				    	background-color: lightgray;
+				    	text-align:center;
 					}
-					.checktrain
+					.trainpanto
 					{
-						width: 100%;
-						height: 60px;
-						padding-top: 15px;
-						border-bottom: 2px #ACACB4 solid;
-					}
-					#trainnum
-					{
-						width: 100px;
-						height: 30px;
-						font-family: "微软雅黑";
-						font-size: 16px;
-					}
-					.runningstateTable
-					{
-						width: 100%;
-						height: 600px;
-						background-color:white;
+				    	float: left;
+				    	width:60px;
+				    	height: 35px;
+				    	margin-top: 10px;
+				    	background-image:url(images/pantoup.png);
+				    	background-size:contain;
+				    	background-repeat: no-repeat;
 					}
 					tr
 					{
 						margin-top: 10px;
-						border: solid white 2px;
-					}
+						border-bottom:#f6f6f6;
+}
 					td
 					{
-						background-color: #000000;
+						background-color:#d8f2fc;
+						background:-webkit-gradient(linear,  top,  bottom, from(#d8f2fc), to(#fff)); -webkit-background-origin:padding; -webkit-background-clip:content;
+						background: -moz-linear-gradient(top, #d8f2fc 0%, #fff 100%); 
+						background: -webkit-gradient(linear,  top, bottom, color-stop(0%,#d8f2fc), color-stop(100%,#fff)); 
+						background: -webkit-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+						background: -o-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+						background: -ms-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+						background: linear-gradient(to bottom, #d8f2fc 0%,#fff 100%); 
 						font:"微软雅黑";
-						color: white;
-						font-size: 16px;
+						color: black;
+						font-size: 13px;
 						width: 100px;
-						height: 40px;
+						height: 25px;
 						text-align: center;
-						border: solid 2px white;
+						border:1px solid #f6f6f6;
 					}
 					th
 					{
-						background-color: #000000;
+						background-color:#d8f2fc;
+						background:-webkit-gradient(linear,  top,  bottom, from(#d8f2fc), to(#fff)); -webkit-background-origin:padding; -webkit-background-clip:content;
+						background: -moz-linear-gradient(top, #d8f2fc 0%, #fff 100%); 
+						background: -webkit-gradient(linear,  top, bottom, color-stop(0%,#d8f2fc), color-stop(100%,#fff)); 
+						background: -webkit-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+						background: -o-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+						background: -ms-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+						background: linear-gradient(to bottom, #d8f2fc 0%,#fff 100%);
 						font:"微软雅黑";
-						color: white;
-						font-size: 16px;
+						color: black;
+						font-size: 13px;
 						width: 110px;
-						height: 40px;
+						height: 25;
 						text-align: center;
 						border: solid 2px white;
 					}
-					#trainStateImg{
-						margin-left: 80px;
-					}
-					#trainStateImg img
-					{
-						margin-left:83px;
-						border-left-width: 2px;
-						border-left-color: white;
-						border-left-style: solid;
-						border-top-color: white;
-						border-top-style: solid;
-						border-top-width: 2px;
-					}
-					table.trainspecificstate th
-					{
-						background-color: #000000;
-						font:"微软雅黑";
-						color: white;
-						font-size: 14px;
-						width: 102px;
-						height: 25px;
-						text-align: center;
-						border: solid 2px white;
-					}
-					table.trainspecificstate td
-					{
-						background-color: #000000;
-						font:"微软雅黑";
-						color: white;
-						font-size: 16px;
-						width: 45px;
-						height: 25px;
-						text-align: center;
-						border: solid 2px white;
-					}
+
 					
 				</style>
 				<script type="text/javascript">
