@@ -39,32 +39,19 @@
 					width: 30%;
 					height: auto;
 				}
-				#icons {
-					margin: 0;
-					padding: 0;
-				}
-				#icons li {
-					margin: 2px;
-					position: relative;
-					padding: 4px 0;
-					cursor: pointer;
-					float: left;
-					list-style: none;
-				}
-				#icons span.ui-icon {
-					float: left;
-					margin: 0 4px;
-				}
+				
 				.warnning
 				{
 					background-color: red;
 					width: 140px;
 					color: white;
+					padding-left: 0px;
 				}
 				.running
 				{
 					background-color:greenyellow;
 					width: 140px;
+					padding-left: 0px;
 				}
 				.stoping
 				{
@@ -72,51 +59,49 @@
 					width: 140px;
 					color: white;
 				}
-				li a{
+				ul,li a{
 					width: 100px;
 					background-color:#EFEFF4;
 				}
-				li
+				ul,li
 				{
-					list-style: none;
+					list-style:none;
 					border-bottom: white;
-					margin-top: 2px;
+					padding: 0;
 					height: 20px;
+					margin-left:0;
 				}
 				#trainFault
 				{
 					background-color: #DDDDDD;
-					width: 220px;
-					height: 200px;
-					background-clip: border-box;
-					overflow: auto;
+					width: 160px;
+					height: auto;
 					border: 1px solid #696;
 					-webkit-border-radius: 8px;
                     -moz-border-radius: 8px;
+                    padding-left: 0px;
 				}
 				#trainRunning
 				{
 					margin-top: 5px;
 					background-color: #DDDDDD;
-					width: 220px;
-					height: 200px;
-					background-clip: border-box;
-					overflow: auto;
+					width: 160px;
+					height: auto;
 					border: 1px solid #696;
 					-webkit-border-radius: 8px;
                     -moz-border-radius: 8px;
+                    padding-left: 0px;
 				}
 				#trainStoping
 				{
 					margin-top: 5px;
 					background-color: #DDDDDD;
-					width: 220px;
-					height: 200px;
-					background-clip: border-box;
-					overflow: auto;
+					width: 160px;
+					height: auto;
 					border: 1px solid #696;
 					-webkit-border-radius: 8px;
                     -moz-border-radius: 8px;
+                    padding-left: 0px;
 				}
 				#part2
 				{
@@ -291,7 +276,7 @@ function getTrainState()
 			//按照车辆状态添加节点
 			if(val.faultState=="on")
 			{
-				$("#trainfault").append('<li class=" ui-corner-all warnning" title=".ui-icon-caret-1-n"><span class="ui-icon ui-icon-circle-close"></span>'+val.trainnum+'车故障'+'</li>');
+				$("#trainfault").append('<li class="warnning"><span class="ui-icon ui-icon-circle-close"></span>'+val.trainnum+'车故障'+'</li>');
 				$("#part-1").append('<div class="item train'+val.trainnum+'"><div class="faulthead faultstate"><img src="css/images/bitbug_favicon.ico"/><span>'+val.trainnum+'</span></div></div>');
 				$(".train"+val.trainnum).append('<div><img src="images/fault.ico"/></div>');
 				faultWarnning($(".train"+val.trainnum),val,"train-runningstate-fault");
@@ -299,14 +284,14 @@ function getTrainState()
 			}
 			else if(val.runningState=="on")
 			{
-				$("#trainrunning").append('<li class=" ui-corner-all running" title=".ui-icon-caret-1-n"><span class="ui-icon ui-icon-circle-arrow-e"></span>'+val.trainnum+'车正常运行'+'</li>');
+				$("#trainrunning").append('<li class="running"><span class="ui-icon ui-icon-circle-arrow-e"></span>'+val.trainnum+'车正常运行'+'</li>');
 				$("#part-1").append('<div class="item train'+val.trainnum+'"><div class="itemhead"><img src="css/images/bitbug_favicon.ico"/><span>'+val.trainnum+'</span></div></div>');
 				$(".train"+val.trainnum).append('<div><img src="images/nomal.ico"/></div>');
 				faultWarnning($(".train"+val.trainnum),val,"train-runningstate-nomal");
 			}
 			else if(val.stopState=="on")
 			{	
-				$("#trainstoping").append('<li class=" ui-corner-all stoping" title=".ui-icon-caret-1-n"><span class="ui-icon ui-icon-cancel"></span>'+val.trainnum+'车停止运行'+'</li>');
+				$("#trainstoping").append('<li class="stoping"><span class="ui-icon ui-icon-cancel"></span>'+val.trainnum+'车停止运行'+'</li>');
 			}
 			else
 			{
@@ -338,8 +323,8 @@ function getTrainState()
 			},
 			train02:{
 				trainnum:"0302",
-				faultState:"on",
-				runningState:"off",
+				faultState:"off",
+				runningState:"on",
 				stopState:"off",
 				nowStation:"华南广场",
 				nextStation:"华南北",
@@ -388,8 +373,8 @@ function getTrainState()
 			},
 			train07:{
 				trainnum:"0307",
-				faultState:"on",
-				runningState:"off",
+				faultState:"off",
+				runningState:"on",
 				stopState:"off",
 				nowStation:"华南广场",
 				nextStation:"华南北",
@@ -398,8 +383,8 @@ function getTrainState()
 			},
 			train08:{
 				trainnum:"0308",
-				faultState:"on",
-				runningState:"off",
+				faultState:"off",
+				runningState:"on",
 				stopState:"off",
 				nowStation:"华南广场",
 				nextStation:"华南北",
@@ -428,8 +413,8 @@ function getTrainState()
 			},
 			train11:{
 				trainnum:"0311",
-				faultState:"on",
-				runningState:"off",
+				faultState:"off",
+				runningState:"on",
 				stopState:"off",
 				nowStation:"华南广场",
 				nextStation:"华南北",
@@ -438,8 +423,8 @@ function getTrainState()
 			},
 			train12:{
 				trainnum:"0312",
-				faultState:"on",
-				runningState:"off",
+				faultState:"off",
+				runningState:"on",
 				stopState:"off",
 				nowStation:"华南广场",
 				nextStation:"华南北",

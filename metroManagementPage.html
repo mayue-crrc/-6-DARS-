@@ -22,6 +22,7 @@
 			td
 			{
 				text-align: center;
+				font-size: 10px;
 			}
 			
 			th
@@ -216,7 +217,16 @@
       									.add( metroManufacturedateCreate ).add( metroLineCreate ).add( metroDescriptionCreate ),
       				tips = $( ".validateTips" );
 					tips.text("所有的表单字段都是必填的");
-					
+					metroTable.row.add([1,"06001","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([2,"06002","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([3,"06003","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([4,"06004","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([5,"06005","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([6,"06006","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([7,"06007","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([8,"06008","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([9,"06009","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
+					metroTable.row.add([10,"06010","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
 					//显示表格数据
 					$.ajax({
 	      				url:"<%=basePath%>metro/allMetroInfo.do",
@@ -227,6 +237,7 @@
 							var metroBeanList = data;
 							$.each(metroBeanList, function(index) {
 								metroBean = metroBeanList[index];
+								//添加数据
 								metroTable.row.add([
 									index,
 									metroBean.metroCode,
