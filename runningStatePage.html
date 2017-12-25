@@ -14,9 +14,32 @@
 	<body>
 		<div id="runningstatepage">
 				<div class="runningstateTable">
+					<div align="center">
+						<table  >
+							<tr>
+								<th>网压</th>
+								<th>网流</th>
+								<th>级位</th>
+								<th>车速</th>
+								<th>当前站</th>
+								<th>下一站</th>
+								<th>终点站</th>
+							</tr>
+							<tr>
+								<th>1500V</th>
+								<th>30A</th>
+								<th>100%</th>
+								<th>55kM/h</th>
+								<th>小平岛</th>
+								<th>河口</th>
+								<th>兴工街</th>
+							</tr>
+						</table>
+					</div>
+					
 					<div class="trainpanto" style="margin-left: 22.2%;" ></div>
 					<div class="trainpanto" style="margin-left: 18.4%;"></div>
-					<div class="trainpanto" style="margin-left: 29.3%;margin-right: 120px; "></div>
+					<div class="trainpanto" style="margin-left: 28%;margin-right: 120px; "></div>
 					<div class="trainbody" style="margin-left: 100px;">0601</div>
 					<div class="trainbody">0602</div>
 					<div class="trainbody">0603</div>
@@ -27,8 +50,8 @@
 					<div class="trainbody">0608</div>
 					
 
-					<div>
-						<table border="1px solid white" class="trainspecificstate">
+					<div >
+						<table  class="trainspecificstate">
 							<tr id="RSPAuxiliaryState">
 								<th>辅助状态</th>
 								<td colspan="2" id="RSPAuxiliaryState1"></td>
@@ -135,7 +158,6 @@
 							</tr>
 						</table>
 					</div>
-					<div id="trainStateImg"><img src="images/trainState.png"/></div>
 				</div>
 				<style type="text/css">
 
@@ -161,11 +183,15 @@
 				    	background-size:contain;
 				    	background-repeat: no-repeat;
 					}
-					tr
+					.trainspecificstate
 					{
-						margin-top: 10px;
-						border-bottom:#f6f6f6;
-}
+						background-color:white
+					}
+					.titlecontent
+					{
+					
+					}
+
 					td
 					{
 						background-color:#d8f2fc;
@@ -177,12 +203,12 @@
 						background: -ms-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
 						background: linear-gradient(to bottom, #d8f2fc 0%,#fff 100%); 
 						font:"微软雅黑";
-						color: black;
+						color: darkgray;
 						font-size: 13px;
 						width: 100px;
 						height: 25px;
 						text-align: center;
-						border:1px solid #f6f6f6;
+						margin-bottom: 2px;
 					}
 					th
 					{
@@ -195,7 +221,7 @@
 						background: -ms-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
 						background: linear-gradient(to bottom, #d8f2fc 0%,#fff 100%);
 						font:"微软雅黑";
-						color: black;
+						color: darkslateblue;
 						font-size: 13px;
 						width: 110px;
 						height: 25;
@@ -230,20 +256,7 @@
 					});
 					function setTrainState(trainNum,trainInfo)
 					{
-						$("#RSPNetVoltage").prepend(trainInfo.netVoltage);
-						$("#RSPWebFlow").prepend(trainInfo.webFlow);
-						$("#RSPSpeed").prepend(trainInfo.trainSpeed);
-						$("#RSPLevel").append(trainInfo.trainLevel+'%');
-						$("#RSPCurrentPosition").append(trainInfo.currentPosition);
-						$("#RSPNextPosition").append(trainInfo.nextPosition);
-						$("#RSPLastStop").append(trainInfo.lastStop);
-						var img=$("img").eq(0);
-						if(trainInfo.warningState)
-						{
-							setInterval(blink,1000,img);
-						}
-						else
-						{}
+
 						for (var i=0;i<8;i++) {
 							$("#RSPAuxiliaryState").children("td").eq(i).append('--');
 						}
