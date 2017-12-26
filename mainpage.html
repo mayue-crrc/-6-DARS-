@@ -5,6 +5,7 @@
 		<title></title>
 		<script src="js/jQuery/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="js/jquery.dataTables.js" ></script>
 		<script src="js/jquery.tree-multiselect.js" type="text/javascript" charset="utf-8"></script>
@@ -12,11 +13,11 @@
 		<script type="text/javascript" src="input.js"></script>
 		<link rel="stylesheet" href="css/dataTables.jqueryui.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jquery.tree-multiselect.min.css"/>
-		
 		<style type="text/css" >
 
 			html {
@@ -51,11 +52,13 @@
 			{
 				width: 15%;
 				float: left;
-				height: 600px;
+				height: 900px;
 				font-family: "微软雅黑";
 				font-size: 17px;
-				background-color:#00abeb;
-
+				background-color:#E9E9E9;
+				background-image: url(images/menubackground.jpg);
+				background-size: contain;
+				background-repeat: no-repeat;
 			}
 			body
 			{
@@ -68,17 +71,19 @@
 				border-bottom-color:white;
 				border-width: 1px;
 				width: 90%;
-				height: 30px;
+				height: 50px;
+				color: white;
 				margin-top: 1px;
 				margin-left:5%;
-				line-height: 30px;
-				background:-webkit-gradient(linear, left top, right top, from(#E9E9E9), to(#fff)); -webkit-background-origin:padding; -webkit-background-clip:content;
-				background: -moz-linear-gradient(left, #E9E9E9 0%, #fff 100%); 
-				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#E9E9E9), color-stop(100%,#fff)); 
-				background: -webkit-linear-gradient(left, #E9E9E9 0%,#fff 100%); 
-				background: -o-linear-gradient(left, #E9E9E9 0%,#fff 100%); 
-				background: -ms-linear-gradient(left, #E9E9E9 0%,#fff 100%); 
-				background: linear-gradient(to right, #E9E9E9 0%,#fff 100%); 
+				line-height: 50px;
+				box-shadow: 0px 0px 10px 5px silver;
+				background:-webkit-gradient(linear, left top, right top, from(#333333), to(#8F8F94)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				background: -moz-linear-gradient(left, #333333 0%, #8F8F94 100%); 
+				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#333333), color-stop(100%,#8F8F94)); 
+				background: -webkit-linear-gradient(left, #333333 0%,#8F8F94 100%); 
+				background: -o-linear-gradient(left, #333333 0%,#8F8F94 100%); 
+				background: -ms-linear-gradient(left, #333333 0%,#8F8F94 100%); 
+				background: linear-gradient(to right, #333333 0%,#8F8F94 100%); 
 				border-radius:10px;
 			}
 			.menu-item:first-child
@@ -104,32 +109,36 @@
 			}
 			.itemclick
 			{
-				color:white;
-				height: 40px;
-				line-height: 40px;
+				color:black;
+				border-radius:10px 0px 0px 10px;
+				width: 92%;
+				margin-left: 8%;
+				height: 60px;
+				line-height: 60px;
 				font-size: larger;
-				box-shadow: 0px 0px 10px 5px silver;
-				background:-webkit-gradient(linear, left top, right top, from(#333333), to(#8F8F94)); -webkit-background-origin:padding; -webkit-background-clip:content;
-				background: -moz-linear-gradient(left, #333333 0%, #8F8F94 100%); 
-				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#333333), color-stop(100%,#8F8F94)); 
-				background: -webkit-linear-gradient(left, #333333 0%,#8F8F94 100%); 
-				background: -o-linear-gradient(left, #333333 0%,#8F8F94 100%); 
-				background: -ms-linear-gradient(left, #333333 0%,#8F8F94 100%); 
-				background: linear-gradient(to right, #333333 0%,#8F8F94 100%); 
+				background:-webkit-gradient(linear, left top, right top, from(#E9E9E9), to(#fff)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				background: -moz-linear-gradient(left, #E9E9E9 0%, #fff 100%); 
+				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#E9E9E9), color-stop(100%,#fff)); 
+				background: -webkit-linear-gradient(left, #E9E9E9 0%,#fff 100%); 
+				background: -o-linear-gradient(left, #E9E9E9 0%,#fff 100%); 
+				background: -ms-linear-gradient(left, #E9E9E9 0%,#fff 100%); 
+				background: linear-gradient(to right, #E9E9E9 0%,#fff 100%); 
+				border-left: none;
+				box-shadow:none;
 			}
 			.menu-icon
 			{
 				width: 20px;
 				height: 20px;
 				margin-left: 5px;
-				margin-top: 5px;
+				margin-top: 15px;
 				float: left;
 			}
 			.menu-click-icon
 			{
 				width:30px;
 				height:30px ;
-				margin-top:5px;
+				margin-top:15px;
 				margin-left: 5px;
 				float: left;
 			}
@@ -138,7 +147,8 @@
 				width: 81%;
 				height: auto; 
 				float: left;
-				margin-left: 50px;
+				margin-left: 20px;
+				margin-top: 20px;
 				border: 2px #4682B4 solid;
 				border-radius: 8px;
 				background-image: url(images/mainpagebackground.png);
@@ -147,10 +157,12 @@
 			}
 			#checkoutmsg
 			{
+				width: 81%;
 				margin-top: 10px;
-				margin-left: 253px;
-				margin-bottom: 10px;
+				margin-left: 20px;
+				margin-bottom: 2px;
 				display: none;
+				float: left;
 			}
 			label
 			{
@@ -172,7 +184,7 @@
 		<div class="header">
 				<div id="head-title">
 				</div>
-				<div style="float: left;margin-left: 180px; margin-top: 20px; font-size: 30px;"><b>北京6号线西延线列车无线监测系统</b></div>
+				<div style="float: left;margin-left: 180px; margin-top: 20px; font-size: 30px;"><b></b></div>
 				<div style="float: right; margin-top: 40px;">
 					<select id="login_drop">
 						<option value="1" selected="selected">用户信息</option>
@@ -192,11 +204,7 @@
 		</div>
 		<div>
 			<div id="checkoutmsg">
-<<<<<<< HEAD
-				<fieldset id="" style="padding-left: 15px; padding-bottom: 12px;">
-=======
 				<fieldset id="" style="border:2px #4682B4 solid; padding-left: 15px; padding-bottom: 12px;">
->>>>>>> xiaomingge
 					<legend>条件选择</legend>
 						<select id="changemetronumber">
 							<option value="0601">0601</option>
@@ -212,13 +220,8 @@
 							<option value="0611">0611</option>
 							<option value="0612">0612</option>
 						</select>
-<<<<<<< HEAD
-						<label style="font: '微软雅黑';font-size: 15px; border-radius:5px;height:25px;line-height:25px;">查询起始时间：</label><input type="text" id="datepickerstart"></input>
-						<label style="font: '微软雅黑';font-size: 15px; border-radius:5px;height:25px;line-height:25px;">查询结束时间：</label><input type="text" id="datepickerend"></input>
-=======
 						<label style="font: '微软雅黑';font-size: 17px; border-radius:5px;height:25px;line-height:25px;">查询起始时间：</label><input type="text" id="datepickerstart"></input>
 						<label style="font: '微软雅黑';font-size: 17px; border-radius:5px;height:25px;line-height:25px;">查询结束时间：</label><input type="text" id="datepickerend"></input>
->>>>>>> xiaomingge
 						<input type="button" name="makesure" id="makesure" value="确定" />
 				</fieldset>	
 			</div>
@@ -417,7 +420,8 @@
 							$("#maincontent").unbind();
 							$("#checkoutmsg").css("display","none");
 							var inputcontent=$('<code></code>').append(data);
-							$("#maincontent").html(inputcontent.find('#runningPage')); 
+							$("#maincontent").html(inputcontent.find('#runningPage'));
+							
 						},
 					});
 				});
