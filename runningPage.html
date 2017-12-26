@@ -3,536 +3,380 @@
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
+		<script src="js/jQuery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/jquery.dataTables.js" ></script>
+		<script src="js/jquery.tree-multiselect.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="input.js"></script>
+		<link rel="stylesheet" href="css/dataTables.jqueryui.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
+		<link rel="stylesheet" type="text/css" href="css/jquery.tree-multiselect.min.css"/>
 	</head>
 	<body>
 	<div id="runningPage">
-		<div id="part1">
-			<div id="trainFault">
-				<ul id="trainfault" >			
-				</ul>
+		<div id="metrocurrentstate">
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06001</span>
+				</div>
+				<div class="overviewitemicon">	
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：五路居站</span></div>
+					<div id=""><span>下一站：田村站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
 			</div>
-			<div id="trainRunning">
-				<ul id="trainrunning">
-				</ul>
-			</div>
-			<div id="trainStoping">
-				<ul id="trainstoping">
-				</ul>
-			</div>
-		</div>
-		<div id="part2">
-			<div id="part-1">
-			</div>
-		</div>
-		<div id="part3">
-			<div id="part3-1"></div>
-			<div id="part3-2">
-				<label for="" class="ui-state-default"><span class="ui-icon ui-icon-alert"></span>报警信息&nbsp;&nbsp;</label>
-				<li class="ui-state-default"></li>
-				<li class="ui-state-default"></li>
-			</div>
-		</div>
-		<style>
-				#part1
-				{
-					float: left;
-					width: 30%;
-					height: auto;
-				}
-				
-				.warnning
-				{
-					background-color: red;
-					width: 140px;
-					color: white;
-					padding-left: 0px;
-				}
-				.running
-				{
-					background-color:greenyellow;
-					width: 140px;
-					padding-left: 0px;
-				}
-				.stoping
-				{
-					background-color: #999999;
-					width: 140px;
-					color: white;
-				}
-				ul,li a{
-					width: 100px;
-					background-color:#EFEFF4;
-				}
-				ul,li
-				{
-					list-style:none;
-					border-bottom: white;
-					padding: 0;
-					height: 20px;
-					margin-left:0;
-				}
-				#trainFault
-				{
-					background-color: #DDDDDD;
-					width: 160px;
-					height: auto;
-					border: 1px solid #696;
-					-webkit-border-radius: 8px;
-                    -moz-border-radius: 8px;
-                    padding-left: 0px;
-				}
-				#trainRunning
-				{
-					margin-top: 5px;
-					background-color: #DDDDDD;
-					width: 160px;
-					height: auto;
-					border: 1px solid #696;
-					-webkit-border-radius: 8px;
-                    -moz-border-radius: 8px;
-                    padding-left: 0px;
-				}
-				#trainStoping
-				{
-					margin-top: 5px;
-					background-color: #DDDDDD;
-					width: 160px;
-					height: auto;
-					border: 1px solid #696;
-					-webkit-border-radius: 8px;
-                    -moz-border-radius: 8px;
-                    padding-left: 0px;
-				}
-				#part2
-				{
-					float: left;
-					width: 60%;
-				}
-				#part-1
-				{
-					float: left;
-					width: 90%;
-					height: auto;
-					display: flex;
-					flex-direction: row;
-					flex-wrap: wrap;
-					align-content: flex-start;
-					justify-content: flex-start;
-				}
-				.item
-				{
-					border: 1px solid #696;
-					text-align: center; 
-					width: 130px;
-					height: 170px;
-					-webkit-border-radius: 8px;
-                    -moz-border-radius: 8px;
-					border-radius: 8px;
-					-webkit-box-shadow:#666 0px 0px 10px;
-					-moz-box-shadow: #666 0px 0px 10px;
-					box-shadow: #666 0px 0px 10px;
-					background-color: white;
-					margin-left: 10px;
-					margin-bottom: 10px;
-
-				}
-				.itemhead
-				{
-					width: 100%;
-					height: 20px;
-					display:block;
-					background:-webkit-gradient(linear, left top , right top, from(greenyellow), to(#FFFA90)); -webkit-background-origin:padding; -webkit-background-clip:content;
-				}
-				.itemhead >img
-				{
+			
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06002</span>
+				</div>
+				<div class="overviewitemicon">
 					
-					margin-left: 0px;
-					margin-top: 2px;
-				}
-				.faulthead
-				{
-					width: 100%;
-					height: 20px;
-					display:block;
-					color: white;
-					background:-webkit-gradient(linear, left top , right top, from(red), to(#F1A899)); -webkit-background-origin:padding; -webkit-background-clip:content;
-				}
-				#part-2
-				{
-					width: 10%;
-					float: right;
-				}
-				#part3
-				{
-					width: 10%;
-					float: right;
-				}
-				#part3-1
-				{
-					width: 100%;
-					height: 40px;
-					float: left;
-				}
-				#BTN-warnning
-				{
-					position: relative;
-					float: right;
-					width: 30px;
-					height: 30px;
-					top: 0px;
-					right: 0px;
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：苹果园站</span></div>
+					<div id=""><span>下一站：苹果园南路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06003</span>
+				</div>
+				<div class="overviewitemicon">
 					
-				}
-				#part3-2
-				{
-					display: none;
-					border: 1px solid #696;
-					width: 60%;
-					float: right;
-					height: 600px;
-					background-color:#DDDDDD;
-				}
-				.train-runningstate-fault
-				{
-					background-color: red;
-					color: white;
-					font-size:12px;
-					text-align: center;
-					line-height: 16px;
-					height: 16px;
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：廖公庄站</span></div>
+					<div id=""><span>下一站：田村站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06004</span>
+				</div>
+				<div class="overviewitemicon">
 					
-				}
-				.train-runningstate-nomal
-				{
-					background:#DDDDDD;
-					font-size:12px;
-					text-align: center;
-					height: 16px;
-					line-height: 16px;
-				}
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：玉泉路站</span></div>
+					<div id=""><span>下一站：永定路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06005</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：巨山路站</span></div>
+					<div id=""><span>下一站：砂石厂站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06006</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：苹果园东街站</span></div>
+					<div id=""><span>下一站：苹果园南路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06007</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：五环路站</span></div>
+					<div id=""><span>下一站：京门铁路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06008</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：京门铁路站</span></div>
+					<div id=""><span>下一站：101铁路线</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06009</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：苹果园南路站</span></div>
+					<div id=""><span>下一站：五环路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06010</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：永定路站</span></div>
+					<div id=""><span>下一站：玉泉路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06011</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：田村东路站</span></div>
+					<div id=""><span>下一站：砂石厂路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06012</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：砂石厂路站</span></div>
+					<div id=""><span>下一站：巨山路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06013</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：五环路站</span></div>
+					<div id=""><span>下一站：京门铁路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+			<div class="overviewitem">
+				<div id="" class="overviewitemheader">
+					<span>06014</span>
+				</div>
+				<div class="overviewitemicon">
+					
+				</div>
+				<div class="overviewvalue">
+					<div id=""><span>当前站：苹果园站</span></div>
+					<div id=""><span>下一站：苹果园南路站</span></div>
+					<div id=""><span>网压：1500V</span></div>
+					<div id=""><span>网流：10A</span></div>
+					<div id=""><span>模式：ATO</span></div>
+				</div>
+			</div>	
+		</div>
+		<!--
+        	描述： 以后可能添加
+        <div id="metrofaultlist">
+			
+		</div>
+		<div id="metrolist">
+			
+		</div>-->
+		<style type="text/css">
+			#runningPage
+			{
+				width: 1100px;
+				height: 800px;
+			}
+			#metrocurrentstate
+			{
+				width:100%;
+				height:600px;
+			}
+			.overviewitem
+			{
+				border: 3px solid #0078AE;
+				text-align: center; 
+				width: 200px;
+				height: 250px;
+				-webkit-border-radius: 12px;
+                -moz-border-radius: 12px;
+				border-radius: 12px;
+				-webkit-box-shadow:#666 0px 0px 10px;
+				-moz-box-shadow: #666 0px 0px 10px;
+				box-shadow: #666 0px 0px 10px;
+				background-color: white;
+				margin-left: 13px;
+				margin-top: 10px;
+				margin-bottom: 10px;
+				float: left;
+				background:-webkit-gradient(linear, left top, left bottom, from(#E9E9E9), to(#fff)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				background: -moz-linear-gradient(left, #E9E9E9 0%, #fff 100%); 
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E9E9E9), color-stop(100%,#fff)); 
+				background: -webkit-linear-gradient(top, #E9E9E9 0%,#fff 100%); 
+				background: -o-linear-gradient(top, #E9E9E9 0%,#fff 100%); 
+				background: -ms-linear-gradient(top, #E9E9E9 0%,#fff 100%); 
+				background: linear-gradient(to bottom, #E9E9E9 0%,#fff 100%); 
+			}
+			.overviewitemheader
+			{
+				-webkit-border-radius: 11px 11px 0px 0px;
+                -moz-border-radius: 11px 11px 0px 0px;
+				border-radius: 11px 11px 0px 0px;
+				width: 100%;
+				height: 30px;
+				border-bottom: 2px solid #003EFF;
+			}
+			.overviewitemheader span
+			{
+				display: inline-block;
+				line-height: 30px;
+				font-family: "微软雅黑";
+				font-size: 18px;
+			}
+			.overviewitemicon 
+			{
+				width: 40%;
+				height: 80px;
+				margin-left: 30%;
+				background-image: url(images/nomal.png);
+				background-size:contain;
+				background-repeat: no-repeat;
+			}
+			.overviewvalue
+			{
+				width: 100%;
+				height: auto;
+				border-top: 2px solid #003EFF;
+				padding-top: 6px;
+			}
+			.overviewvalue div
+			{
+				font-family: "微软雅黑";
+				font-size: 15px;
+				margin-top: 4px;
+				background:-webkit-gradient(linear,  top,  bottom, from(#d8f2fc), to(#fff)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				background: -moz-linear-gradient(top, #d8f2fc 0%, #fff 100%); 
+				background: -webkit-gradient(linear,  top, bottom, color-stop(0%,#d8f2fc), color-stop(100%,#fff)); 
+				background: -webkit-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+				background: -o-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+				background: -ms-linear-gradient(top, #d8f2fc 0%,#fff 100%); 
+				background: linear-gradient(to bottom, #d8f2fc 0%,#fff 100%); 
+			}
 		</style>
-		<script type="text/javascript">
-			$(function(){
-				getTrainState();
-				var flag=true;
-				$("#BTN-warnning").click(function(){
-					$("#part3-2").toggle(200);
-					if(flag)
-					{
-						$("#part3").animate({ 
-							width:"20%"
-						},{
-							duration:200
+		<script type="text/javascript">	
+			function initRuningPage(){
+				$.ajax({
+					type:"get",
+					url:"",
+					async:true,
+					dataType:"JSON",
+					success:function(data){
+						var  dataList=data;
+						$.each(dataList, function(index) {
+							//添加块状区域
+							var itemnode=document.createElement('div');
+							itemnode.id="overviewitem"+index;
+							itemnode.class="overviewitem";
+							$("#metrocurrentstate").appendChild(itemnode);
+							//添加头
+							var itemheadr=document.createElement('div');
+							itemheadr.class='overviewitemheader';
+							itemheadr.append('<span>'+dataList[index].metroNumber+'</span>');
+							$("#metrocurrentstate").appendChild(itemheadr);
+							//添加图标区
+							var itemImg=document.createElement('div');
+							itemImg.class='overviewitemicon';
+							if(dataList[index].state=='nomal')
+							{
+								itemImg.style.backgroundImage='url(images/nomal.png)';
+								itemImg.style.backgroundSize='contain';
+								itemImg.style.backgroundRepeat='no-repeat';
+							}
+							else if(dataList[index].state='fault')
+							{
+								itemImg.style.backgroundImage='url(images/fault.png)';
+								itemImg.style.backgroundSize='contain';
+								itemImg.style.backgroundRepeat='no-repeat';
+							}
+							else//剩下的状态判定为离线
+							{
+								itemImg.style.backgroundImage='url(images/outline.png)';
+								itemImg.style.backgroundSize='contain';
+								itemImg.style.backgroundRepeat='no-repeat';
+							}
+							//添加数据区
+							var itemdata=document.createElement('div');
+							itemdata.class='overviewvalue';
+							itemdata.append('<div><span>当前站：'+dataList[index].currentsituation+'</span></div>');
+							itemdata.append('<div><span>下一站：'+dataList[index].nextsituation+'</span></div>');
+							itemdata.append('<div><span>网压：'+dataList[index].linecurrent+'</span></div>');
+							itemdata.append('<div><span>网流：'+dataList[index].lineFlow+'</span></div>');
+							itemdata.append('<div><span>模式：'+dataList[index].mode+'</span></div>');
 						});
-						$("#part2").animate({ 
-							width:"50%"
-						},{
-							duration:200
-						});
-						$("#part3-1").animate({
-							width:"39%",
-							float:"left",
-							left:"0px"
-						},{
-							duration:200 
-						});
-						$("#BTN-warnning>span").removeClass("ui-icon-mail-closed");
-						$("#BTN-warnning>span").addClass("ui-icon-mail-open");
-						flag=false;
-					}
-					else
-					{
-						$("#part3").animate({ 
-							width:"10%"
-						},{
-							duration:200
-						});
-						$("#part2").animate({
-							width:"60%"
-						},{
-							duration:200
-						});
-						$("#part3-1").animate({
-							width:"100%",
-							float:"right",
-							right:"0px"
-						},{
-							duration:200
-						});
-						$("#BTN-warnning>span").removeClass("ui-icon-mail-open");
-						$("#BTN-warnning>span").addClass("ui-icon-mail-closed");
-						flag=true;
 					}
 				});
-			});
-			
-function getTrainState()
-{
-	//清空节点
-	$("#trainfault").empty();
-	$("#trainrunning").empty();
-	$("#trainstoping").empty();
-	$.each(train, function(i,val) {
-			//按照车辆状态添加节点
-			if(val.faultState=="on")
-			{
-				$("#trainfault").append('<li class="warnning"><span class="ui-icon ui-icon-circle-close"></span>'+val.trainnum+'车故障'+'</li>');
-				$("#part-1").append('<div class="item train'+val.trainnum+'"><div class="faulthead faultstate"><img src="css/images/bitbug_favicon.ico"/><span>'+val.trainnum+'</span></div></div>');
-				$(".train"+val.trainnum).append('<div><img src="images/fault.ico"/></div>');
-				faultWarnning($(".train"+val.trainnum),val,"train-runningstate-fault");
+				
 				
 			}
-			else if(val.runningState=="on")
-			{
-				$("#trainrunning").append('<li class="running"><span class="ui-icon ui-icon-circle-arrow-e"></span>'+val.trainnum+'车正常运行'+'</li>');
-				$("#part-1").append('<div class="item train'+val.trainnum+'"><div class="itemhead"><img src="css/images/bitbug_favicon.ico"/><span>'+val.trainnum+'</span></div></div>');
-				$(".train"+val.trainnum).append('<div><img src="images/nomal.ico"/></div>');
-				faultWarnning($(".train"+val.trainnum),val,"train-runningstate-nomal");
-			}
-			else if(val.stopState=="on")
-			{	
-				$("#trainstoping").append('<li class="stoping"><span class="ui-icon ui-icon-cancel"></span>'+val.trainnum+'车停止运行'+'</li>');
-			}
-			else
-			{
-				
-			}
-						
-	});
-	$("#part3-1").append('<button id="BTN-warnning"><span class="ui-icon ui-icon-mail-closed"></span></button>');
-}
-
-	function faultWarnning($ele,opt,cls)
-	{
-		$ele.append('<div><li class='+cls+'>当前站:'+opt.nowStation+'</li>');
-		$ele.append('<li class='+cls+" ui-state-default"+'>下一站:'+opt.nextStation+'</li>');
-		$ele.append('<li class='+cls+" ui-state-default"+'>网流:'+opt.webFlow+'</li>');
-		$ele.append('<li class='+cls+" ui-state-default"+'>模式:'+opt.mode+'</li></div>');
-	}
-
-	var train={
-			train01:{
-				trainnum:"0301",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train02:{
-				trainnum:"0302",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train03:{
-				trainnum:"0303",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train04:{
-				trainnum:"0304",
-				faultState:"off",
-				runningState:"off",
-				stopState:"on",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train05:{
-				trainnum:"0305",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train06:{
-				trainnum:"0306",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train07:{
-				trainnum:"0307",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train08:{
-				trainnum:"0308",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train09:{
-				trainnum:"0309",
-				faultState:"off",
-				runningState:"off",
-				stopState:"on",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train10:{
-				trainnum:"0310",
-				faultState:"off",
-				runningState:"off",
-				stopState:"on",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train11:{
-				trainnum:"0311",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train12:{
-				trainnum:"0312",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train13:{
-				trainnum:"0313",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train14:{
-				trainnum:"0314",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train15:{
-				trainnum:"0315",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train16:{
-				trainnum:"0316",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train17:{
-				trainnum:"0317",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train18:{
-				trainnum:"0318",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train19:{
-				trainnum:"0319",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train20:{
-				trainnum:"0320",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train21:{
-				trainnum:"0321",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},
-			train22:{
-				trainnum:"0322",
-				faultState:"off",
-				runningState:"on",
-				stopState:"off",
-				nowStation:"华南广场",
-				nextStation:"华南北",
-				webFlow:10,
-				mode:"auto"
-			},	
-		}
 		</script>
-	</div>
+	</div>		
 	</body>
 </html>

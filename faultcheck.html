@@ -11,15 +11,14 @@
 			td
 			{
 				text-align: center;
-				height: 12px;
-				color: white;
+				font-size: 10px;
+				white-space: nowrap !important;  
 			}
 			
 			th
 			{
 				border-bottom: 1px solid #B6B6B6;
 				font-size: 10px;
-				height: 12px;
 				border-bottom: 2px silver solid;
 				border-top: 2px silver solid;
 				background-color: steelblue;
@@ -29,43 +28,23 @@
 			}
 			#nowfault
 			{
-				width: 100%;
-				height:250px;
-				padding-top: 15px;
+				height:320px;
 				border-bottom: 1px #ACACB4 solid;
-				border-top: 2px #ACACB4 solid;
 			}
 			#historyfault
 			{
-				width: 100%;
-				height:300px;
-				padding-top: 15px;
-				border-bottom: 2px #ACACB4 solid;
+				height:320px;
+				padding-top: 5px;
+				border-bottom: 1px #ACACB4 solid;
 				border-top: 1px #ACACB4 solid;
-			}
-
-			.faultclass
-			{
-				font-family: "楷体";
-				display: block;
-				font-size: 18px;
-				padding-top: 3px;
-				width: 100%;
-				height: 20px;
-				background-color: steelblue;
-				color: white;
-				text-align: center;
-				
 			}
 			.faultcheck
 			{
-				width: 100%;
-				height: 650px;
-				padding-top: 15px;
-				border-bottom: 2px #ACACB4 solid;
+				height: 400px;
+				padding-top: 5px;
+				border-bottom: 1px #ACACB4 solid;
 				overflow: auto;
 			}
-
 			.Page a
 			{
 				margin-top: 10px;
@@ -74,23 +53,9 @@
 				margin-left: 10px;
 				margin-bottom:10px;
 			}
-			
-			.mytabs
+			.Page
 			{
-				
-			}
-			.mytabs-nav mytabs
-			{
-								background-color: red;
-
-			}
-			.mytabs-top mytabs
-			{
-				
-			}
-			.mytabs-bottom mytabs
-			{
-				background-color: red;
+				display: none;
 			}
 		</style>
 	
@@ -101,9 +66,8 @@
 		</ul>
 		<div id="tabs-1">
 			<label class="faultclass">当前故障</label>
-		
 			<div id="nowfault">
-				<table id="nowfautlt1">
+				<table id="nowfautlt1" class="display">
 					<thead>
 						<tr>
 							<th>车辆编号</th>
@@ -116,7 +80,6 @@
 							<th>结束时间</th>
 						</tr>
 					</thead>
-
 				</table>
 			</div>
 			<div class="Page">
@@ -124,7 +87,7 @@
 			</div>				
 			<div id="historyfault">
 				<label class="faultclass">历史故障</label>
-				<table id="historyfault1">
+				<table id="historyfault1" class="display">
 					<thead>
 						<tr>
 							<th>车辆编号</th>
@@ -137,9 +100,6 @@
 							<th>结束时间</th>
 						</tr>
 					</thead>
-					<tbody id="inputHistoryFaultData">
-
-					</tbody>
 				</table>
 			</div>
 			<div class="Page">
@@ -149,7 +109,7 @@
 		<div id="tabs-2">
 			<div class="faultcheck">
 
-					<table id="faultlist">
+					<table id="faultlist" class="display">
 						<thead>
 							<tr>
 								<th>车辆编号</th>
@@ -200,46 +160,89 @@
         return a;  
     }
 	function initView(){
-		
-		$( "#tabs" ).tabs({
-			classes:{
-		      "ui-tabs":"mytabs",
-			  "ui-tabs-nav": "mytabs-nav",
-			  "ui-tabs-tab": "mytabs-top",
-			  "ui-tabs-panel": "mytabs-bottom"
-			}
-		});
-
+		var data1=[
+		{'车辆编号':"06001",'故障名称':"紧急制动指令旁路开关被操作",'故障代码':"3014",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查紧急制动指令旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06002",'故障名称':"总风压力低2旁路开关被操作",'故障代码':"3015",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低2旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		{'车辆编号':"06003",'故障名称':"总风压力低1旁路开关被操作",'故障代码':"3016",'故障位置':"A2",'故障设备':"TCMS",'故障提示':"请检查总风压力低1旁路开关",'开始时间':"2017/12/21 12:21:12",'结束时间':"2017/12/24 11:22:22"},
+		];
 		$("#nowfautlt1").DataTable({
-			"bPaginate":false,
-			"searching":false,
-			"info":false,
-			"bSort":false,
-			"sScrollY":"200px",
-			//"scrollX":true,
-			"bAutoWidth":true,
-
+			bSort:false,
+			bLengthChange:false,
+			searching: false,
+			ordering:  false,
+			scrollY: 200,
+			scrollX:true,
+			bInfo:false,
+			bAutoWidth:false,
+			destroy:true,
+			data:data1,
+			columns:[
+				{data:'车辆编号'},
+				{data:'故障名称'},
+				{data:'故障代码'},
+				{data:'故障位置'},
+				{data:'故障设备'},
+				{data:'故障提示'},
+				{data:'开始时间'},
+				{data:'结束时间'},
+				],
 		});
 		$("#historyfault1").DataTable({
-			"bPaginate":false,
-			"searching":false,
-			"info":false,
-			"bSort":false,
-			"sScrollY":"200px",
-			//"scrollX":true,
-			"bAutoWidth":true,
-			
+			bSort:false,
+			bLengthChange:false,
+			searching: false,
+			ordering:  false,
+			scrollY: 200,
+			scrollX:true,
+			bInfo:false,
+			bAutoWidth:false,
+			destroy:true,
+			data:data1,
+			columns:[
+				{data:'车辆编号'},
+				{data:'故障名称'},
+				{data:'故障代码'},
+				{data:'故障位置'},
+				{data:'故障设备'},
+				{data:'故障提示'},
+				{data:'开始时间'},
+				{data:'结束时间'},
+				],
 		});
+		var  adddatahistory=$("#historyfault1");
+		
 		$("#faultlist").DataTable({
-			"bPaginate":false,
-			"searching":false,
-			"info":false,
-			"bSort":false,
-			"sScrollY":"600px",
-			//"scrollX":true,
-			"bAutoWidth":true,
-
+			bSort:false,
+			bLengthChange:false,
+			searching: false,
+			ordering:  false,
+			scrollY: 200,
+			scrollX:true,
+			bInfo:false,
+			bAutoWidth:false,
+			destroy:true,
+			data:data1,
+			columns:[
+				{data:'车辆编号'},
+				{data:'故障名称'},
+				{data:'故障代码'},
+				{data:'故障位置'},
+				{data:'故障设备'},
+				{data:'故障提示'},
+				{data:'开始时间'},
+				{data:'结束时间'},
+				],
 		});
+		$( "#tabs" ).tabs();
 		$( "#datepickerstart" ).datetimepicker({
 		});
 		$( "#datepickerend" ).datetimepicker({
@@ -262,9 +265,12 @@
 			var current_table=$("#nowfautlt1").DataTable();
 			var history_table=$("#historyfault1").DataTable();
 			var query_table=$("#faultlist").DataTable();
-
+			
+//测试使用tooltip控件
+		  	//var sssss=current_table.cells['selected'].attr("title","this is  description").tooltip();
+			//sssss.attr("title","this is  description").tooltip();
+			$("#nowfautlt1 tbody tr :nth-child(6)").attr('data-placement','right').attr('title','this is test').tooltip();
 			var currentFaultTotalPageObj;//当前故障的总共页数
-
 			var historyFaultTotalPageObj;
 			var currentFaultPageObj={
 					currentFaultPage:1,	
