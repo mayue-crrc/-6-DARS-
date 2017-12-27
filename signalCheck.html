@@ -23,7 +23,7 @@
 			<div id="signal-tree">
 				<div class="select-signal-items">
 					<select id="test-select" multiple="multiple">
-				        <option value="ccu生命信号"  data-section="CCU">CCU生命信号</option>
+				        <option class = "mutiselect" value="ccu生命信号"  data-section="CCU">CCU生命信号</option>
 				        <option value="ccuTime" data-section="CCU">CCU时间</option>
 				        <option value="peach" data-section="ERM">ERM生命信号</option>
 				        <option value="milk tea" data-section="ERM">ERM时间</option>
@@ -35,6 +35,7 @@
 			</div>
 			<div id="signal-showtotalchartpart">
 					<div id="chart-items-1" class="chart-items">
+						
 						<!--
                         <li id="chart-item-li-1" class="items-li"><span class="ui-icon ui-icon-closethick"></span></li>
                         -->
@@ -84,8 +85,11 @@
 				.select-signal-items
 				{
 					float: left;
-					width: 80%;
-				}
+					width: 40%;
+
+
+				}	
+				
 				.signal-button{
 					float: left;
 					margin-left: 10px;
@@ -95,7 +99,7 @@
 				{
 					display: none;
 					float: left;
-					width: 100%;
+					width: 800%;
 				}
 				.tree
 				{
@@ -117,7 +121,7 @@
 				}
 				#signal-showtotalchartpart
 				{
-					width: 900px;
+					width: 100%;
 					height:auto;
 					display: flex;
 					flex-direction: row;
@@ -208,8 +212,18 @@
 					    $("#maincontent").on('updateDataToSignalPage',updateData);
 	 				}
 	 				function updateData(event,params){
-	 					var  data1=[1,2,3,4,5,6];
-					    var  data2=[11,14,22,11,23,17];
+	 					var  data1=[1,2,3,4,5,6,7,8,9,10,11,12
+	 					,1,2,3,4,5,6,7,8,9,10,11,12
+	 					,1,2,3,4,5,6,7,8,9,10,11,12
+	 					,1,2,3,4,5,6,7,8,9,10,11,12
+	 					,1,2,3,4,5,6,7,8,9,10,11,12
+	 					,1,2,3,4,5,6,7,8,9,10,11,12];
+					    var  data2=[11,14,22,11,23,17,23,17,23,17,23,17,23
+					    ,11,14,22,11,23,17,23,17,23,17,23,17,23
+					    ,11,14,22,11,23,17,23,17,23,17,23,17,23
+					    ,11,14,22,11,23,17,23,17,23,17,23,17,23
+					    ,11,14,22,11,23,17,23,17,23,17,23,17,23
+					    ,11,14,22,11,23,17,23,17,23,17,23,17,23];
 				    	$("#makesure").click(function(event){	
 				    		for (var m=1;m<11;m++) {
 				    			if($("#chart-item-"+m))

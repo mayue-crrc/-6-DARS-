@@ -15,71 +15,60 @@
 	<body>
 		<div id = "userManagementPage">
 			<style type = "text/css">
-				#pageContent{
-					width: 98%;
-					height:650px;
-				    margin-right: 15px;
-					padding: 15px;
-				}
-				td
-				{
-					text-align: center;
-					font-size: 10px;
-					white-space: nowrap !important; 
-				}
-				
-				th
-				{
-					border-bottom: 1px solid #B6B6B6;
-					font-size: 10px;
-					border-bottom: 2px silver solid;
-					border-top: 2px silver solid;
-					background-color: steelblue;
-					color: white;
-					text-align: center;
-					white-space: nowrap !important;  
-				}
-				#title
-				{
-					font-family: "楷体";
-					display: block;
-					font-size: 18px;
-					width: 100%;
-					height: 38px;
-					line-height:38px;
-					background-color: #B6B6B6;
-					color: white;
-					text-align: center;
-				}
-				.button {
-				    background-color: #008CBA; /* Green */
-				    border-radius: 8px;
-					width: 6%;
-					height: 38px;
-				    color: white;
-				    padding: 2px;
-				    text-align: center;
-				    text-decoration: none;
-				    display: inline-block;
-				    font-size: 12px;
-				    float: right;
-				}
-				form{padding: 0;margin: 0;}
-				label{display:inline-block;width:80px;text-align:right;}
-				select{margin-bottom:12px; width:30%; border-radius:8px; display:inline;}
-				.shortinput{margin-bottom:12px; width:15%; border-radius:8px; display:inline;}
-				.longinput{margin-bottom:12px; width:60%; border-radius:8px; display:inline;}
-			    fieldset { padding:0; border:2; margin-top:15px; }
-			    legend{padding:0; border:2; margin-bottom:15px;}
-			    h1 { font-size: 1.2em; margin: .6em 0; }
-			    .validateTips { border: 1px solid transparent; padding: 0.3em; }
-			    
-				.demo--label{width: 30px;margin-bottom:12px;display:inline-block}
-				.demo--radio{display:none}
-				.demo--radioInput{background-color:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:100%;display:inline-block;height:16px;margin-right:10px;margin-top:-1px;vertical-align:middle;width:16px;line-height:1}
-				.demo--radio:checked + .demo--radioInput:after{background-color:#57ad68;border-radius:100%;content:"";display:inline-block;height:12px;margin:2px;width:12px}
-				.demo--checkbox.demo--radioInput,.demo--radio:checked + .demo--checkbox.demo--radioInput:after{border-radius:0}
-								
+			td
+			{
+				text-align: center;
+				font-size: 10px;
+			}
+			
+			th
+			{
+				border-bottom: 1px solid #B6B6B6;
+				font-size: 10px;
+				border-bottom: 2px silver solid;
+				border-top: 2px silver solid;
+				background-color: steelblue;
+				color: white;
+				text-align: center;
+				white-space: nowrap !important;  
+			}
+			#pageContent{
+				width: 98%;
+				height:650px;
+			    margin-right: 15px;
+				padding: 15px;
+			}
+
+			#title
+			{
+				font-family: "楷体";
+				display: block;
+				font-size: 18px;
+				width: 100%;
+				height: 38px;
+				line-height:38px;
+				background-color: #B6B6B6;
+				color: white;
+				text-align: center;
+			}
+			.button {
+			    background-color: #008CBA; /* Green */
+			    border-radius: 8px;
+				width: 40px;
+				height: 38px;
+				background-image: url(images/createNew.png);
+				background-size: 40px 38px;
+			    float: right;
+			}
+			form{padding: 0;margin: 0;}
+			label{display:inline-block;width:80px;text-align:right;}
+			.shortinput{margin-bottom:12px; width:15%; border-radius:8px; display:inline;}
+			.longinput{margin-bottom:12px; width:60%; border-radius:8px; display:inline;}
+		    fieldset { padding:0; border:2; margin-top:15px; }
+		    legend{padding:0; border:2; margin-bottom:15px;}
+		    h1 { font-size: 1.2em; margin: .6em 0; }
+
+		    .validateTips { border: 1px solid transparent; padding: 0.3em; }			
 			</style>
 			
 			<script type = "text/javascript">
@@ -407,7 +396,7 @@
 			<div id = "pageContent">
 				<div id="title">
 					<label id = titlename>用户管理</label>
-					<button id = "createNew" class="button" onclick="createNewUser()">创建</button>
+					<button id = "createNew" class="button" onclick="createNewUser()"></button>
 				</div>
 				<div id = "userContent">
 					<table id = "userTable" class = "display">
