@@ -418,7 +418,7 @@
 				});
 				$.ajax({
 					type:"get",
-					url:'runningPage.html',
+					url:'overview.html',
 					dataType:"html",
 					success:function(data){
 						$("#maincontent").unbind();
@@ -430,7 +430,7 @@
 				$("#menu-item1").addClass("itemclick");
 				$("#menu-item1").click(function(){
 					$("#maincontent").empty();
-					var item1URL='runningPage.html';
+					var item1URL='overview.html';
 					$.ajax({
 						type:"get",
 						url:item1URL,
@@ -447,7 +447,7 @@
 				
 				$("#menu-item2").click(function(){
 					$("#maincontent").empty();
-					var item2URL='runningStatePage.html';
+					var item2URL='realtime.html';
 					$.ajax({
 						type:"get",
 						url:item2URL,
@@ -467,7 +467,7 @@
 				
 				$("#menu-item3").click(function(){
 					$("#maincontent").empty();
-					var item3URL='faultcheck.html';
+					var item3URL='faultCheck.html';
 					$.ajax({
 						type:"get",
 						url:item3URL,
@@ -488,7 +488,7 @@
 				});
 				$("#menu-item4").click(function(){
 					$("#maincontent").empty();
-					var item4URL='cumulantquerypage.html';
+					var item4URL='cumulantCheck.html';
 					$.ajax({
 						type:"get",
 						url:item4URL,
@@ -528,7 +528,7 @@
 					});
 				});
 				$("#menu-item6").click(function(){
-					var  item6URL='metroManagementPage.html';
+					var  item6URL='metroManage.html';
 					$.ajax({
 						type:"get",
 						url:item6URL,
@@ -544,7 +544,7 @@
 					});
 				});
 				$("#menu-item7").click(function(){
-					var  item7URL='userManagementPage.html';
+					var  item7URL='userManage.html';
 					$.ajax({
 						type:"get",
 						url:item7URL,
