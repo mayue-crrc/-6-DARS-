@@ -26,11 +26,10 @@
 			}
 			.header
 			{
-
-				background-image: url(images/sky.jpg);
-				background-size: contain;
-				width:100%;
+				width:97%;
 				height: 80px;
+				background-image: url(images/sky.jpg);
+				background-size: 100% 80px;
 				align-content: center;
 				font-size: 25px;
 				font-family:Arial, Helvetica, sans-serif; 
@@ -57,7 +56,7 @@
 				font-size: 17px;
 				background-color:#E9E9E9;
 				background-image: url(images/menubackground.jpg);
-				background-size: contain;
+				background-size: 100% 900px;
 				background-repeat: no-repeat;
 			}
 			body
@@ -76,14 +75,15 @@
 				margin-top: 1px;
 				margin-left:5%;
 				line-height: 50px;
-				box-shadow: 0px 0px 10px 5px silver;
-				background:-webkit-gradient(linear, left top, right top, from(#333333), to(#8F8F94)); -webkit-background-origin:padding; -webkit-background-clip:content;
-				background: -moz-linear-gradient(left, #333333 0%, #8F8F94 100%); 
-				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#333333), color-stop(100%,#8F8F94)); 
-				background: -webkit-linear-gradient(left, #333333 0%,#8F8F94 100%); 
-				background: -o-linear-gradient(left, #333333 0%,#8F8F94 100%); 
-				background: -ms-linear-gradient(left, #333333 0%,#8F8F94 100%); 
-				background: linear-gradient(to right, #333333 0%,#8F8F94 100%); 
+				box-shadow: 0px 0px 10px 5px silver ;
+				background:-webkit-gradient(linear, left top, right top, from(#317ef3), to(#acdef7)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				background: -moz-linear-gradient(left, #317ef3 0%, #acdef7 100%); 
+				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#317ef3), color-stop(100%,#acdef7)); 
+				background: -webkit-linear-gradient(left, #317ef3 0%,#acdef7 100%); 
+				background: -o-linear-gradient(left, #317ef3 0%,#acdef7 100%); 
+				background: -ms-linear-gradient(left, #317ef3 0%,#acdef7 100%); 
+				/*background: linear-gradient(to right, #333333 0%,#8F8F94 100%); */
+				background: linear-gradient(to right, #317ef3 0%,#acdef7 100%);
 				border-radius:10px;
 			}
 			.menu-item:first-child
@@ -92,20 +92,24 @@
 			}
 			#login_drop
 			{
-				float: right;
+  				float: right;
 				margin-top: 5px;
 				margin-right: 5px;
-				opacity: 0.3;
+				border-radius: 10px;
+				color:black;
+				 
 			}
+			
 			.itemhover{
 				box-shadow: 0px 0px 10px 5px silver;
-				background:-webkit-gradient(linear, left top, right top, from(#AAAAAA), to(silver)); -webkit-background-origin:padding; -webkit-background-clip:content;
-				background: -moz-linear-gradient(left, #AAAAAA 0%, silver 100%); 
-				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#AAAAAA), color-stop(100%,silver)); 
-				background: -webkit-linear-gradient(left, #AAAAAA 0%,silver 100%); 
-				background: -o-linear-gradient(left, #AAAAAA 0%,silver 100%); 
-				background: -ms-linear-gradient(left, #AAAAAA 0%,silver 100%); 
-				background: linear-gradient(to right, #AAAAAA 0%,silver 100%); 
+				background:-webkit-gradient(linear, left top, right top, from(#008cd7), to(#00aaea)); -webkit-background-origin:padding; -webkit-background-clip:content;
+				background: -moz-linear-gradient(left, #008cd7 0%, #00aaea 100%); 
+				background: -webkit-gradient(linear, left top, right top, color-stop(0%,#008cd7), color-stop(100%,#00aaea)); 
+				background: -webkit-linear-gradient(left, #008cd7 0%,#00aaea 100%); 
+				background: -o-linear-gradient(left, #008cd7 0%,#00aaea 100%); 
+				background: -ms-linear-gradient(left, #008cd7 0%,#00aaea 100%); 
+				/*background: linear-gradient(to right, #AAAAAA 0%,silver 100%); */
+				background: linear-gradient(to right, #008cd7 0%,#00aaea 100%);
 			}
 			.itemclick
 			{
@@ -178,6 +182,10 @@
 			fieldset { padding:0; border:2; margin-top:15px; }
 			legend{padding:0; border:2; margin-bottom:15px;}
 			.validateTips { border: 1px solid transparent; padding: 0.3em; }
+			
+			#dialog-userModify label{display:inline-block;width:80px;text-align:right;}
+				
+			
 		</style>
 	</head>
 	<body>
@@ -185,14 +193,15 @@
 				<div id="head-title">
 				</div>
 				<div style="float: left;margin-left: 180px; margin-top: 20px; font-size: 30px;"><b></b></div>
-				<div style="float: right; margin-top: 40px;">
+				<div style="float: right; margin-top: 40px; font-size: 15px;">
+					<label style="color:white;margin-right: 10px;">账户管理</label>
 					<select id="login_drop">
-						<option value="1" selected="selected">用户信息</option>
+						<option>用户信息</option>
 						<option>管理员系统维护</option>
 						<option>退出登录</option>
 					</select>
 				</div>
-			</div>
+		</div>
 		<div id="menu">
 			<div id="menu-item1" class="menu-item"><div class="menu-icon" style=" background-image: url(images/runningpage.png);background-size: contain;"></div><span style="margin-left: 5px;">车辆线路总览</span></div>
 			<div id="menu-item2" class="menu-item"><div class="menu-icon" style=" background-image:url(images/runningstatepage.png);background-size: contain;"></div><span style="margin-left: 5px;">实时运行状态</span></div>
@@ -338,10 +347,20 @@
 			        }
 				})
 				$("#login_drop").change(function(){
-					if($("option:selected",this).val() == "1")
+					if($("option:selected",this).index() == 0)
 					{
 						$("#dialog-userModify").dialog("open");
-					}		        
+					}
+					if($("option:selected",this).index() == 2)
+					{
+						$.ajax({
+							type:"get",
+							url:"/logout.do",
+							success:function(data){
+								//添加select的options
+							},							
+						})
+					}
 		        }).focus(function(){
 		            $(this)[0].selectedIndex = -1;
 		        });
