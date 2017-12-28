@@ -424,7 +424,7 @@
 				});
 				$.ajax({
 					type:"get",
-					url:'overview.html',
+					url:'<%=basePath %>overview/page.do',
 					dataType:"html",
 					success:function(data){
 						$("#maincontent").unbind();
@@ -436,7 +436,7 @@
 				$("#menu-item1").addClass("itemclick");
 				$("#menu-item1").click(function(){
 					$("#maincontent").empty();
-					var item1URL='overview.html';
+					var item1URL='<%=basePath %>overview/page.do';
 					$.ajax({
 						type:"get",
 						url:item1URL,
@@ -453,7 +453,7 @@
 				
 				$("#menu-item2").click(function(){
 					$("#maincontent").empty();
-					var item2URL='realtime.html';
+					var item2URL='<%=basePath %>realTime/page.do';
 					$.ajax({
 						type:"get",
 						url:item2URL,
@@ -473,7 +473,7 @@
 				
 				$("#menu-item3").click(function(){
 					$("#maincontent").empty();
-					var item3URL='faultCheck.html';
+					var item3URL='<%=basePath %>fault/page.do';
 					$.ajax({
 						type:"get",
 						url:item3URL,
@@ -494,7 +494,7 @@
 				});
 				$("#menu-item4").click(function(){
 					$("#maincontent").empty();
-					var item4URL='cumulantCheck.html';
+					var item4URL='<%=basePath %>cumulant/page.do';
 					$.ajax({
 						type:"get",
 						url:item4URL,
@@ -514,7 +514,7 @@
 					});
 				});
 				$("#menu-item5").click(function(){
-					var item5URL='signalCheck.html';
+					var item5URL='<%=basePath %>signal/page.do';
 					$.ajax({
 						type:"get",
 						url:item5URL,
@@ -534,7 +534,7 @@
 					});
 				});
 				$("#menu-item6").click(function(){
-					var  item6URL='metroManage.html';
+					var  item6URL='<%=basePath %>metro/page.do';
 					$.ajax({
 						type:"get",
 						url:item6URL,
@@ -550,7 +550,7 @@
 					});
 				});
 				$("#menu-item7").click(function(){
-					var  item7URL='userManage.html';
+					var  item7URL='<%=basePath %>user/page.do';
 					$.ajax({
 						type:"get",
 						url:item7URL,
