@@ -7,7 +7,6 @@
 			+ path + "/";
 %>
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -171,13 +170,13 @@
 					//用于记录总条目数
 					var cnt = 0;
 					//用于向后台发送
-					var metroBean={
-							ajax_metroCode:null,
-							ajax_metroType:null,
-							ajax_metroManufacture:null,
-							ajax_metroManufacturedate:null,
-							ajax_metroLine:null,
-							ajax_metroDescription:null,
+					var metroBeanSend={
+							metroCode:null,
+							metroType:null,
+							manufacturer:null,
+							dateManufacture:null,
+							line:null,
+							description:null,
 						};
 					//用于保存选中行的值
 					var metroBeanSelect={
@@ -210,22 +209,13 @@
       									.add( metroManufacturedateCreate ).add( metroLineCreate ).add( metroDescriptionCreate ),
       				tips = $( ".validateTips" );
 					tips.text("所有的表单字段都是必填的");
-					metroTable.row.add([1,"06001","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([2,"06002","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([3,"06003","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([4,"06004","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([5,"06005","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([6,"06006","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([7,"06007","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([8,"06008","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([9,"06009","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
-					metroTable.row.add([10,"06010","HXD3D","长客","2017/12/12","北6西延线","无"]).draw();
 					//显示表格数据
 					$.ajax({
 	      				url:"<%=basePath%>metro/allMetroInfo.do",
-	      				type:"post",
+	      				type:"get",
 	      				dataType:"JSON",
 	      				success:function(data){
+	      					metroTable.clear().draw();
 							var metroBean;
 							var metroBeanList = data;
 							$.each(metroBeanList, function(index) {
@@ -239,7 +229,7 @@
 									metroBean.dateManufacture,
 									metroBean.line,
 									metroBean.description
-								])
+								]).draw()
 								cnt = index;
 							});
 	      				}
@@ -271,29 +261,53 @@
 						      		if(bValid)
 						      		{
 						      			//ajax create 
-						      			metroBean.ajax_metroCode = metroCodeCreate.val();
-						      			metroBean.ajax_metroType = metroTypeCreate.val();
-						      			metroBean.ajax_metroManufacture = metroManufactureCreate.val();
-						      			metroBean.ajax_metroManufacturedate = metroManufacturedateCreate.val();
-						      			metroBean.ajax_metroLine = metroLineCreate.val();
-						      			metroBean.ajax_metroDescription = metroDescriptionCreate.val();
+						      			metroBeanSend.metroCode = metroCodeCreate.val();
+						      			metroBeanSend.metroType = metroTypeCreate.val();
+						      			metroBeanSend.manufacturer = metroManufactureCreate.val();
+						      			metroBeanSend.dateManufacture = metroManufacturedateCreate.val();
+						      			metroBeanSend.line = metroLineCreate.val();
+						      			metroBeanSend.description = metroDescriptionCreate.val();
 						      			//test add
 						      			metroTable.row.add([
 											cnt,
-											metroBean.ajax_metroCode,
-											metroBean.ajax_metroType,
-											metroBean.ajax_metroManufacture,
-											metroBean.ajax_metroManufacturedate,
-											metroBean.ajax_metroLine,
-											metroBean.ajax_metroDescription
+											metroBeanSelect.metroCode,
+											metroBeanSelect.metroType,
+											metroBeanSelect.manufacturer,
+											metroBeanSelect.dateManufacture,
+											metroBeanSelect.line,
+											metroBeanSelect.description
 										]).draw();
 						      			$.ajax({
 						      				url:"<%=basePath%>metro/add.do",
 						      				type:"post",
-						      				data:metroBean,
+						      				contentType:"application/JSON",
+						      				data:{"metroBean":JSON.stringify(metroBeanSend)},
 						      				dataType:"JSON",
 						      				success:function(data){
-		
+												$.ajax({
+							      				url:"<%=basePath%>metro/allMetroInfo.do",
+							      				type:"get",
+							      				dataType:"JSON",
+							      				success:function(data){
+													var metroBean;
+													var metroBeanList = data;
+													metroTable.clear().draw();
+													$.each(metroBeanList, function(index) {
+														metroBean = metroBeanList[index];
+														//添加数据
+														metroTable.row.add([
+															index,
+															metroBean.metroCode,
+															metroBean.metroType,
+															metroBean.manufacturer,
+															metroBean.dateManufacture,
+															metroBean.line,
+															metroBean.description
+														]).draw()
+														cnt = index;
+													});
+							      				}
+	      			})				
 						      				}
 						      			})
 				      					allFieldsCreate.val( "" ).removeClass( "ui-state-error" );
@@ -336,20 +350,43 @@
 				      		if(bValid)
 				      		{
 								//ajax update 
-				      			metroBean.ajax_metroCode = metroCode.val();
-				      			metroBean.ajax_metroType = metroType.val();
-				      			metroBean.ajax_metroManufacture = metroManufacture.val();
-				      			metroBean.ajax_metroManufacturedate = metroManufacturedate.val();
-				      			metroBean.ajax_metroLine = metroLine.val();
-				      			metroBean.ajax_metroDescription = metroDescription.val();
+				      			metroBeanSend.metroCode = metroCode.val();
+				      			metroBeanSend.metroType = metroType.val();
+				      			metroBeanSend.manufacturer = metroManufacture.val();
+				      			metroBeanSend.dateManufacture = metroManufacturedate.val();
+				      			metroBeanSend.line = metroLine.val();
+				      			metroBeanSend.description = metroDescription.val();
 				      		
 				      			$.ajax({
 				      				url:"<%=basePath%>metro/update.do",
 				      				type:"post",
-				      				data:metroBean,
+				      				data:{"metroBean":JSON.stringify(metroBeanSend)},
 				      				dataType:"JSON",
 				      				success:function(data){
-
+										$.ajax({
+							      				url:"<%=basePath%>metro/allMetroInfo.do",
+							      				type:"get",
+							      				dataType:"JSON",
+							      				success:function(data){
+							      					metroTable.clear().draw();
+													var metroBean;
+													var metroBeanList = data;
+													$.each(metroBeanList, function(index) {
+														metroBean = metroBeanList[index];
+														//添加数据
+														metroTable.row.add([
+															index,
+															metroBean.metroCode,
+															metroBean.metroType,
+															metroBean.manufacturer,
+															metroBean.dateManufacture,
+															metroBean.line,
+															metroBean.description
+														]).draw()
+														cnt = index;
+													});
+							      				}
+	      								})				
 				      				}
 				      			})
 								tips.text("所有的表单字段都是必填的");
@@ -368,10 +405,10 @@
 					      			$.ajax({
 					      				url:"<%=basePath%>metro/delete.do",
 					      				type:"post",
-					      				data:metroCodeAjax,
+					      				data:{"metroCodeAjax":metroCodeAjax},
 					      				dataType:"JSON",
 					      				success:function(data){
-	
+											
 					      				}
 					      			})
 									tips.text("所有的表单字段都是必填的");

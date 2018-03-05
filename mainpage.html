@@ -19,15 +19,15 @@
 		<link rel="stylesheet" type="text/css" href="css/jquery.datetimepicker.css"/>
 		<link rel="stylesheet" type="text/css" href="css/jquery.tree-multiselect.min.css"/>
 		<style type="text/css" >
-			html {
+			html,body {
 				height: 100%;
 			}
 			.header
 			{
-				width:97%;
+				width:100%;
 				height: 80px;
 				background-image: url(images/sky.jpg);
-				background-size: 100% 80px;
+				background-size: contain;
 				align-content: center;
 				font-size: 25px;
 				font-family:Arial, Helvetica, sans-serif; 
@@ -180,10 +180,30 @@
 			fieldset { padding:0; border:2; margin-top:15px; }
 			legend{padding:0; border:2; margin-bottom:15px;}
 			.validateTips { border: 1px solid transparent; padding: 0.3em; }
-			
 			#dialog-userModify label{display:inline-block;width:80px;text-align:right;}
-				
-			
+			#userchange
+			{
+				display: block;
+				width: 30px;
+				height: 30px;
+				background-image:url(images/user.png);
+				background-size: cover;
+			}
+			#logout
+			{
+				display: block;
+				width: 30px;
+				height: 30px;
+				background-image:url(images/logout.png);
+				background-size: cover;
+			}
+			.usermsg
+			{
+				width: 30px;
+				height: 30px;
+				float: right;
+				margin-right: 15px;
+			}	
 		</style>
 	</head>
 	<body>
@@ -191,13 +211,9 @@
 				<div id="head-title">
 				</div>
 				<div style="float: left;margin-left: 180px; margin-top: 20px; font-size: 30px;"><b></b></div>
-				<div style="float: right; margin-top: 40px; font-size: 15px;">
-					<label style="color:white;margin-right: 10px;">账户管理</label>
-					<select id="login_drop">
-						<option>用户信息</option>
-						<option>管理员系统维护</option>
-						<option>退出登录</option>
-					</select>
+				<div style="float: right; margin-top: 40px; font-size: 15px; margin-right: 30px;">
+					<div class="usermsg"><a id="logout" href="logout.do"></a></div>
+					<div class="usermsg"><a id="userchange" href="#"></a></div>
 				</div>
 		</div>
 		<div id="menu">
@@ -208,6 +224,7 @@
 			<div id="menu-item5" class="menu-item"><div class="menu-icon" style=" background-image:url(images/signalpage.png);background-size: contain;"></div><span style="margin-left: 5px;">车辆状态分析</span></div>
 			<div id="menu-item6" class="menu-item"><div class="menu-icon" style=" background-image:url(images/metromenagementpage.png);background-size: contain;"></div><span style="margin-left: 5px;">车辆管理</span></div>
 			<div id="menu-item7" class="menu-item"><div class="menu-icon" style=" background-image:url(images/usermenagementpage.png);background-size: contain;"></div><span style="margin-left: 5px;">用户管理</span></div>
+			<div id="menu-item8" class="menu-item"><div class="menu-icon" style=" background-image:url(images/cumulantquerypage.png);background-size: contain;"></div><span style="margin-left: 5px;">文件下载</span></div>
 		</div>
 		<div>
 			<div id="checkoutmsg">
@@ -261,17 +278,16 @@
 //					};
 //				}
 //				socket.close();
-				$(".menu-item").hover(function(){
-					$(this).toggleClass('itemhover');
-				});
+				//用户修改自己的密码
 				var userNameinput = $("#userNameinput");
 				var oldPasswordinput = $("#oldPasswordinput");
 				var newPasswordinput = $("#newPasswordinput");
 				var newPasswordConfirminput = $("#newPasswordConfirminput");
 			    var tips = $(".validateTips");
 			    var allinput_passwordmodify = $([]).add(oldPasswordinput).add(newPasswordinput).add(newPasswordConfirminput);
+			    //获取当前用户
 			    $.ajax({
-					type:"post",
+					type:"get",
 					url:"<%=basePath%>user/getCurrentUser.do",
 					async:true,
 					dataType:"JSON",
@@ -279,7 +295,7 @@
 						userNameinput.val(data.userName);
 					}
 				});	
-		
+				//创建用户修改密码时弹出的dialog
 				$("#dialog-userModify").dialog({
 					heigth:350,
 			        width: 400,	
@@ -299,7 +315,7 @@
 			        		bValid = bValid&&checkLength(oldPasswordinput,"原密码",6,12);
 			        		bValid = bValid&&checkLength(newPasswordinput,"新密码",6,12);
 			        		bValid = bValid&&checkLength(newPasswordConfirminput,"确认密码密码",6,12);
-			        		
+			        		//正则匹配密码
 			        		bValid = bValid&&checkRegexp(oldPasswordinput,/^([0-9a-zA-Z])+$/,"字段只允许： a-z 0-9");
 			        		bValid = bValid&&checkRegexp(newPasswordinput,/^([0-9a-zA-Z])+$/,"字段只允许： a-z 0-9");
 			        		bValid = bValid&&checkRegexp(newPasswordConfirminput,/^([0-9a-zA-Z])+$/,"字段只允许： a-z 0-9");
@@ -316,6 +332,7 @@
 									oldPassword:oldPasswordinput.val(),
 									newPassword:newPasswordinput.val()
 								};
+								//修改密码
 								$.ajax({
 									type:"post",
 									url:"<%=basePath%>user/password.do",
@@ -344,25 +361,11 @@
 			        	},			        	
 			        }
 				})
-				$("#login_drop").change(function(){
-					if($("option:selected",this).index() == 0)
-					{
+				//单击案按键后修改密码对话框弹出
+				$("#userchange").click(function(){	
 						$("#dialog-userModify").dialog("open");
-					}
-					if($("option:selected",this).index() == 2)
-					{
-						$.ajax({
-							type:"get",
-							url:"/logout.do",
-							success:function(data){
-								//添加select的options
-							},							
-						})
-					}
-		        }).focus(function(){
-		            $(this)[0].selectedIndex = -1;
 		        });
-		        
+		        //获取当前系统里所有的列车号
 				$.ajax({
 					type:"get",
 					url:"",
@@ -382,7 +385,7 @@
 						var  userType=data;
 					}
 				});
-				var params={}
+				var params={};//获取用户选择的列车车号，开始时间和结束时间
 				$("#changemetronumber").selectmenu({width:100,});
 				$("#makesure").button();
 				var getMetroNumber=$("#changemetronumber").val();
@@ -400,7 +403,12 @@
 					getEndTime=$("#datepickerend").val();
 					params.endTime=getEndTime;
 				});			
-				changePageSize();
+				//changePageSize();//根据用户窗口的分辨率设置HTML的宽和高
+				//当鼠标悬浮在导航栏上，导航栏变色
+				$(".menu-item").hover(function(){
+					$(this).toggleClass('itemhover');
+				});
+				//单击导航栏的时候修改样式
 				$(".menu-item").click(function(){
 					if(!$(this).hasClass("itemclick"))
 					{
@@ -414,20 +422,23 @@
 					}
 			
 				});
+				//进入系统时，第一个加载的第一个页面
 				$.ajax({
 					type:"get",
 					url:'overview.html',
 					dataType:"html",
 					success:function(data){
-						$("#maincontent").unbind();
+						$("#maincontent").unbind();//接触$("#miancont")绑定的所有时间
 						$("#checkoutmsg").css("display","none");
 						var inputcontent=$('<code></code>').append(data);
 						$("#maincontent").html(inputcontent.find('#runningPage')); 
 					},
 				});
+				//默认菜单栏第一个选中
 				$("#menu-item1").addClass("itemclick");
+				//点击第一个菜单栏刷新overview页面
 				$("#menu-item1").click(function(){
-					$("#maincontent").empty();
+					$("#maincontent").empty();//清空id=maincontent这个div
 					var item1URL='overview.html';
 					$.ajax({
 						type:"get",
@@ -438,11 +449,10 @@
 							$("#checkoutmsg").css("display","none");
 							var inputcontent=$('<code></code>').append(data);
 							$("#maincontent").html(inputcontent.find('#runningPage'));
-							
 						},
 					});
 				});
-				
+				//点击第二个菜单栏刷新realtime页面
 				$("#menu-item2").click(function(){
 					$("#maincontent").empty();
 					var item2URL='realtime.html';
@@ -458,11 +468,11 @@
 							$("#datepickerstart").css("display","none");
 							$("#datepickerend").css("display","none");
 							$("#checkoutmsg").css("display","block");
-							$("#makesure").unbind('click');
+							$("#makesure").unbind('click');//清除id=makesure按键绑定的函数
 						},
 					});
 				});
-				
+				//点击第三个菜单栏刷新 faultcheck页面
 				$("#menu-item3").click(function(){
 					$("#maincontent").empty();
 					var item3URL='faultCheck.html';
@@ -479,11 +489,12 @@
 							$("#datepickerend").css("display","none");
 							$("#checkoutmsg").css("display","block");
 							$("#makesure").unbind('click');
-							initView();
-							$("#maincontent").trigger("updateDataToFaultqueryPage",params); 
+							initView();//初始化函数
+							$("#maincontent").trigger("updateDataToFaultqueryPage",params); //页面触发函数
 						},
 					});
 				});
+				//点击第四个菜单栏刷新cumulantCheck页面
 				$("#menu-item4").click(function(){
 					$("#maincontent").empty();
 					var item4URL='cumulantCheck.html';
@@ -505,6 +516,7 @@
 						},
 					});
 				});
+				//点击第五个菜单栏刷新signalCheck页面
 				$("#menu-item5").click(function(){
 					var item5URL='signalCheck.html';
 					$.ajax({
@@ -525,6 +537,7 @@
 						},
 					});
 				});
+				//点击第六个菜单栏刷新metromanage页面
 				$("#menu-item6").click(function(){
 					var  item6URL='metroManage.html';
 					$.ajax({
@@ -541,6 +554,7 @@
 						},
 					});
 				});
+				//点击第七个菜单栏刷新userManage页面
 				$("#menu-item7").click(function(){
 					var  item7URL='userManage.html';
 					$.ajax({
@@ -557,7 +571,23 @@
 						},
 					});
 				});
-				
+				$("#menu-item8").click(function(){
+					var  item8URL='fileload.html';
+					$.ajax({
+						type:"get",
+						url:item8URL,
+						dataType:'html',
+						success:function(data){
+							$("#maincontent").unbind();
+							$("#checkoutmsg").css("display","none");
+							var inputcontent=$('<code></code>').append(data);
+							$("#maincontent").html(inputcontent.find("#userManagementPage"));
+							initUserView();
+							//$("#maincontent").trigger('updateUserManagementPage',params);
+						},
+					});
+				});
+				//引用datetimepicker控件
 				$( "#datepickerstart" ).datetimepicker({
 						lang:'ch',
 						todayButton:true, 
@@ -566,17 +596,14 @@
 					lang:'ch',
 					todayButton:true,
 				});
-				$.datetimepicker.setLocale('ch');
-				
+				$.datetimepicker.setLocale('ch');//汉化datetimepicker控件	
 		})
-			function changePageSize(){
-				var changeWidth=window.screen.availWidth;
-				$("body").css("width",changeWidth+"px");
-			}
+//			function changePageSize(){
+//				var changeWidth=window.screen.availWidth;
+//				$("body").css("width",changeWidth+"px");
+//			}
 			function updateTips( t ) {
-			   	$( ".validateTips" )
-			      	.text( t )
-			        .addClass( "ui-state-highlight" );
+			   	$( ".validateTips" ).text( t ).addClass( "ui-state-highlight" );
 			      setTimeout(function() {
 			        $( ".validateTips" ).removeClass( "ui-state-highlight", 1500 );
 			      }, 500 );
