@@ -14,7 +14,7 @@
 		<script src="<%=basePath %>js/jQuery/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%=basePath %>js/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%=basePath %>js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="j<%=basePath %>s/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
+		<script src="<%=basePath %>js/jquery.datetimepicker.full.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript" src="<%=basePath %>js/jquery.dataTables.js" ></script>
 		<script src="<%=basePath %>js/jquery.tree-multiselect.js" type="text/javascript" charset="utf-8"></script>
 		<script src="<%=basePath %>js/echarts.min.js" type="text/javascript" charset="utf-8"></script>
@@ -33,10 +33,10 @@
 			}
 			.header
 			{
-				width:97%;
+				width:100%;
 				height: 80px;
 				background-image: url(images/sky.jpg);
-				background-size: 100% 80px;
+				background-size:contain;
 				align-content: center;
 				font-size: 25px;
 				font-family:Arial, Helvetica, sans-serif; 
@@ -189,10 +189,30 @@
 			fieldset { padding:0; border:2; margin-top:15px; }
 			legend{padding:0; border:2; margin-bottom:15px;}
 			.validateTips { border: 1px solid transparent; padding: 0.3em; }
-			
 			#dialog-userModify label{display:inline-block;width:80px;text-align:right;}
-				
-			
+			#userchange
+			{
+				display: block;
+				width: 30px;
+				height: 30px;
+				background-image:url(images/user.png);
+				background-size: cover;
+			}
+			#logout
+			{
+				display: block;
+				width: 30px;
+				height: 30px;
+				background-image:url(images/logout.png);
+				background-size: cover;
+			}
+			.usermsg
+			{
+				width: 30px;
+				height: 30px;
+				float: right;
+				margin-right: 15px;
+			}	
 		</style>
 	</head>
 	<body>
@@ -200,13 +220,9 @@
 				<div id="head-title">
 				</div>
 				<div style="float: left;margin-left: 180px; margin-top: 20px; font-size: 30px;"><b></b></div>
-				<div style="float: right; margin-top: 40px; font-size: 15px;">
-					<label style="color:white;margin-right: 10px;">账户管理</label>
-					<select id="login_drop">
-						<option>用户信息</option>
-						<option>管理员系统维护</option>
-						<option>退出登录</option>
-					</select>
+				<div style="float: right; margin-top: 40px; font-size: 15px;margin-right: 30px;">
+					<div class="usermsg"><a id="logout" href="logout.do"></a></div>
+					<div class="usermsg"><a id="userchange" href="#"></a></div>
 				</div>
 		</div>
 		<div id="menu">
@@ -352,23 +368,8 @@
 			        	},			        	
 			        }
 				})
-				$("#login_drop").change(function(){
-					if($("option:selected",this).index() == 0)
-					{
-						$("#dialog-userModify").dialog("open");
-					}
-					if($("option:selected",this).index() == 2)
-					{
-						$.ajax({
-							type:"get",
-							url:"/logout.do",
-							success:function(data){
-								//添加select的options
-							},							
-						})
-					}
-		        }).focus(function(){
-		            $(this)[0].selectedIndex = -1;
+				$("#userchange").click(function(){
+					$("#dialog-userModify").dialog("open");
 		        });
 		        
 				$.ajax({

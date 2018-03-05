@@ -109,7 +109,7 @@
 						type:"post",
 						url:"<%=basePath%>user/exist.do",
 						async:true,
-						data:userName,
+						data:{"userName":userName},
 						dataType:"JSON",
 						success:function(data){
 							if(data == "true")
@@ -152,19 +152,21 @@
 					var allCreate = $([]).add(userNameCreate).add(userPasswordCreate)
 										.add(userTypeCreate).add(userEnableCreate).add(userDescriptionCreate)
 										
-
-					userTable.row.add([
-						1,"mayue","2017/12/15",1,1
-					]).draw();
-					userTable.row.add([
-						2,"dengran","2017/12/15",1,1
-					]).draw();
-					userTable.row.add([
-						3,"wangyuting","2017/12/15",1,1
-					]).draw();
-					userTable.row.add([
-						4,"duxiaoming","2017/12/15",1,1
-					]).draw();
+					$.ajax({
+						type:"get",
+						url:"<%=basePath%>user/allNormal.do",
+						async:true,
+						dataType:"JSON",
+						success:function(data){
+							userTable.fnClearTable();
+							userTable.fnDestroy();
+							var userListBean;
+							$.each(data, function(index) {
+								userListBean=data[index];
+								userTable.row.add([userListBean.id,userListBean.userName,userListBean.createTime,userListBean.enable,userListBean.description]).draw();
+							});
+						},
+					});
 					//用于记录总条目数
 					var cnt = 0;
 					//用于向后台发送
@@ -213,13 +215,28 @@
 					        			$.ajax({
 					        				type:"post",
 					        				url:"<%=basePath%>user/update.do",
-					        				data:userBean,
+					        				data:{"userBean":userBean},
 					        				dataType:"JSON",
 					        				async:true,
 					        				success:function(data){
 					        					if(data == "true")
 					        					{
-					        						alert("用户更新成功！！");					        											        						
+					        						alert("用户更新成功！！");
+					        						$.ajax({
+														type:"get",
+														url:"<%=basePath%>user/allNormal.do",
+														async:true,
+														dataType:"JSON",
+														success:function(data){
+															userTable.fnClearTable();
+															userTable.fnDestroy();
+															var userListBean;
+															$.each(data, function(index) {
+																userListBean=data[index];
+																userTable.row.add([userListBean.id,userListBean.userName,userListBean.createTime,userListBean.enable,userListBean.description]).draw();
+															});
+														},
+													});
 					        					}else{
 					        						alert("用户更新失败！！");					        											        						
 					        						
@@ -238,13 +255,28 @@
 					        			$.ajax({
 					        				type:"post",
 					        				url:"<%=basePath%>user/delete.do",
-					        				data:userName,
+					        				data:{"userName":userBean},
 					        				dataType:"JSON",
 					        				async:true,
 					        				success:function(data){
 					        					if(data == "true")
 					        					{
-					        						alert("用户删除成功！！");					        											        						
+					        						alert("用户删除成功！！");
+					        						$.ajax({
+														type:"get",
+														url:"<%=basePath%>user/allNormal.do",
+														async:true,
+														dataType:"JSON",
+														success:function(data){
+															userTable.fnClearTable();
+															userTable.fnDestroy();
+															var userListBean;
+															$.each(data, function(index) {
+																userListBean=data[index];
+																userTable.row.add([userListBean.id,userListBean.userName,userListBean.createTime,userListBean.enable,userListBean.description]).draw();
+															});
+														},
+													});
 					        					}else{
 					        						alert("用户删除失败！！");					        											        						
 					        						
@@ -312,12 +344,27 @@
 					        				type:"post",
 					        				url:"<%=basePath%>user/add.do",
 					        				async:true,
-					        				data:userBean,
+					        				data:{"userBean":userBean},
 					        				datatType:"JSON",
 					        				success:function(data){
 					        					if(data == "true")
 					        					{
-					        						alert("用户创建成功！！");					        											        						
+					        						alert("用户创建成功！！");
+					        						$.ajax({
+														type:"get",
+														url:"<%=basePath%>user/allNormal.do",
+														async:true,
+														dataType:"JSON",
+														success:function(data){
+															userTable.fnClearTable();
+															userTable.fnDestroy();
+															var userListBean;
+															$.each(data, function(index) {
+																userListBean=data[index];
+																userTable.row.add([userListBean.id,userListBean.userName,userListBean.createTime,userListBean.enable,userListBean.description]).draw();
+															});
+														},
+													});
 					        					}else{
 					        						alert("用户创建失败！！");					        											        						
 					        						
@@ -351,28 +398,6 @@
 				            userDescriptioninput.val(userTable.rows('.selected').data()[0][4]);
 						}
 					})
-					
-					$.ajax({
-						type:"post",
-						url:"<%=basePath%>user/allNormal.do",
-						async:true,
-						dataType:"JSON",
-						success:function(data){
-							var userBean;
-							$.each(data, function(index) {
-								userBean = data[index];
-								userTable.row.add([
-									index,
-									userBean.userName,
-									userBean.createTime,
-									userBean.enable,
-									userBean.description,
-								])
-							});
-						}
-					});
-
-					//$("#maincontent").on('')
 				}
 				function enableUser(){
 					var userEnableinput = $("#userEnableinput");

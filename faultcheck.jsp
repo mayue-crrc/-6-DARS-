@@ -250,10 +250,6 @@
 				],
 		});
 		$( "#tabs" ).tabs();
-		$( "#datepickerstart" ).datetimepicker({
-		});
-		$( "#datepickerend" ).datetimepicker({
-		});
 		$("#maincontent").on("updateDataToFaultqueryPage",updateData);
 		$(".chance-2").click(function(){
 				$("#checkoutmsg label").css("display","inline-block");

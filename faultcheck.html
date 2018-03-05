@@ -14,7 +14,6 @@
 				font-size: 10px;
 				white-space: nowrap !important;  
 			}
-			
 			th
 			{
 				border-bottom: 1px solid #B6B6B6;
@@ -56,6 +55,10 @@
 			.Page
 			{
 				display: none;
+			}
+			#testdialog tr
+			{
+				border-bottom: silver 1px solid;
 			}
 		</style>
 	
@@ -128,6 +131,82 @@
 				<a href='#' id="checkHistoryPrePage">上一页</a><a id="checkHistoryFaultCurrentPage"></a><a href='#' id="checkHistoryNextPage">下一页</a><a id="checkHistoryFaultTotalPage"></a>
 			</div>
 		</div>
+		<div id="testdialog">
+			<table style="border: silver 1px solid;">
+				<tr>
+					<td>起始站ID</td>
+					<td>62</td>
+				</tr>
+				<tr>
+					<td>终点站ID</td>
+					<td>68</td>
+				</tr>
+				<tr>
+					<td>牵引制动级位</td>
+					<td>牵引60%</td>
+				</tr>
+				<tr>
+					<td>列车速度</td>
+					<td>68km/h</td>
+				</tr>
+				<tr>
+					<td>网压</td>
+					<td>1500V</td>
+				</tr>
+				<tr>
+					<td>ATC在线</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>牵引指令</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>制动指令</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>惰行</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>紧急制动</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>网流</td>
+					<td>77A</td>
+				</tr>
+				<tr>
+					<td>上下行</td>
+					<td>上行</td>
+				</tr>
+				<tr>
+					<td>降弓到位监视MP1</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>降弓到位监视MP3</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>降弓到位监视MP2</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>ATC运营模式-手动驾驶模式</td>
+					<td>0</td>
+				</tr>
+				<tr>
+					<td>ATC运营模式-ATO运行模式</td>
+					<td>1</td>
+				</tr>
+				<tr>
+					<td>下一停车站编号</td>
+					<td>33</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 	
 	<script type="text/javascript">
@@ -140,7 +219,6 @@
 	    var hour = myDate.getHours();  
 	    var minute = myDate.getMinutes(); 
 	    var second  = myDate.getSeconds(); 
-
 	    return year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;  
 	}        
 	function packagingdatatabledata(msgObj){  
@@ -243,10 +321,6 @@
 				],
 		});
 		$( "#tabs" ).tabs();
-		$( "#datepickerstart" ).datetimepicker({
-		});
-		$( "#datepickerend" ).datetimepicker({
-		});
 		$("#maincontent").on("updateDataToFaultqueryPage",updateData);
 		$(".chance-2").click(function(){
 				$("#checkoutmsg label").css("display","inline-block");
@@ -266,7 +340,8 @@
 			var history_table=$("#historyfault1").DataTable();
 			var query_table=$("#faultlist").DataTable();
 //测试使用tooltip控件
-			$("#nowfautlt1 tbody tr :nth-child(6)").attr('data-placement','right').attr('title','this is test').tooltip();
+			//$("#nowfautlt1 tbody tr :nth-child(6)").addClass("ui-tooltip").attr('title','请检查紧急制动指令旁路开关').tooltip();
+			//.attr('data-placement','right')
 			var currentFaultTotalPageObj;//当前故障的总共页数
 			var historyFaultTotalPageObj;
 			var currentFaultPageObj={
@@ -354,10 +429,6 @@
 					$("#historyFaultCurrentPage").text(historyFaultPageObj.historyFaultPage +" / "+historyFaultTotalPage);
 				},
 			});
-			
-
-			
-
 			//点击当前故障的上一页按钮刷新当前故障列表
 			$("#currentPrePage").click(function(){
 				if(currentFaultPageObj.currentFaultPage >1)
@@ -377,7 +448,6 @@
 						$.each(currentFault, function(index) {
 							currentbean=currentFault[index];
 							//...按照currentbean里面的名字将数据插入到列表
-
 							current_table.row.add([
 								currentbean.metroCode,
 								currentbean.faultName,
@@ -417,15 +487,15 @@
 							currentbean=currentFault[index];
 							//...按照currentbean里面的名字将数据插入到列表
 							current_table.row.add([
-								currentbean.metroCode,
-								currentbean.faultName,
-								currentbean.faultCode,
-								currentbean.faultPosition,
-								currentbean.faultDevice,
-								currentbean.faultHint,
-								js_date_time(currentbean.startTime),
-								""
-								]);
+							currentbean.metroCode,
+							currentbean.faultName,
+							currentbean.faultCode,
+							currentbean.faultPosition,
+							currentbean.faultDevice,
+							currentbean.faultHint,
+							js_date_time(currentbean.startTime),
+							""
+							]);
 						});
 						current_table.draw();
 						$("#currentFaultCurrentPage").text(currentFaultPageObj.currentFaultPage +" / "+currentFaultTotalPage);
@@ -622,7 +692,50 @@
 				});
 			});
 	}
-	
+	$("#nowfautlt1").on("click","tr",function(){
+						if($(this).hasClass('selected'))
+						{
+							$(this).removeClass('selected');
+						}else{
+							//$(this).addClass('selected');
+							$("#testdialog").dialog("open");
+						}
+					})
+	$("#historyfault1").on("click","tr",function(){
+						if($(this).hasClass('selected'))
+						{
+							$(this).removeClass('selected');
+						}else{
+							//$(this).addClass('selected');
+							$("#testdialog").dialog("open");
+						}
+					})
+	$("#faultlist").on("click","tr",function(){
+						if($(this).hasClass('selected'))
+						{
+							$(this).removeClass('selected');
+						}else{
+							//$(this).addClass('selected');
+							$("#testdialog").dialog("open");
+						}
+					})
+	$("#testdialog").dialog({
+							heigth:400,
+					        width: 240,	
+					    	modal:true,
+					        autoOpen: false,
+					        show: {
+					        	duration: 200
+					        },
+					        hide: {
+					        	duration: 200
+					        },
+					        buttons:{
+					        	"取消":function(){			        			
+					        		$(this).dialog("close");
+					        	}
+					        }
+					})
 	</script>
 </div>
 	</body>
